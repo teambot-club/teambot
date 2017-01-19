@@ -1,7 +1,6 @@
 var express = require('express'),
     botService = require('server/services/bot'),
     settingsService = require('server/services/settings'),
-    installService = require('server/services/install'),
     hookService = require('server/services/hook'),
     bodyParser = require('body-parser'),
     config = require('config');
