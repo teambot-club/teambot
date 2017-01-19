@@ -16,7 +16,7 @@
     "slack",
     "bot",
     "startup"
-  ],
+  ], 
   "author": "Teambot Team",
   "license": "MIT",
   "bugs": {
