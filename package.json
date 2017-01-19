@@ -24,7 +24,7 @@
   },
   "homepage": "http://teambot.club",
   "dependencies": {
-    "botkit": "0.2.2",
+    "botkit": "0.4.9",
     "botkit-storage-mongo": "1.0.4",
     "config": "1.21.0",
     "request": "2.69.0",

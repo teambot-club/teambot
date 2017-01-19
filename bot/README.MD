@@ -2,7 +2,7 @@
 
 ## Middleware
 
-This is a hear middleware. This means that it defines a custom logic for processing of messages.
+This is a `hear` middleware. This means that it defines a custom logic for processing of messages.
 The middleware enables the behaviour definition providing keywords. What this means?
 Let's get this example:
 

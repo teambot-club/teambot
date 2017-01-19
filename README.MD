@@ -22,7 +22,7 @@ The fastest and easiest way to get started is to run MongoDB and Teambot locally
 ```
 $ git clone https://github.com/teambot-club/teambot.git
 $ npm install
-$ mongod (optional if the your local MongoDB is not started)
+$ mongod #optional if your local MongoDB is not started
 $ node teambot.js
 ```
 
