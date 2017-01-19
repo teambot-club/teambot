@@ -1,0 +1,14 @@
+{
+    "server": {
+        "port": "8888"
+    },
+    "botkit": {
+        "port": "3000"
+    },
+    "mongoUri": "mongodb://mongo:27017",
+    "restrictOnlyOneUser": false,
+    "log": {
+        "enabled": true,
+        "level": 0
+    }
+}

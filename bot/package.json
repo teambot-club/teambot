@@ -1,0 +1,8 @@
+{
+  "name": "teambot-skills",
+  "version": "0.0.1",
+  "description": "Predefined list of Teambot skills",
+  "dependencies": {
+    "teambot-conversation": "1.0.1"
+  }
+}
