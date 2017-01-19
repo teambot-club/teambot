@@ -1,6 +1,7 @@
 ![TEAMBOT](portal/img/teambot-banner.png)
 
 [![Slack Channel](https://img.shields.io/badge/slack-channel-green.svg)](https://teambotclub.slack.com/messages/general)
+[![Stories in Ready](https://badge.waffle.io/teambot-club/teambot.png?label=ready&title=Ready)](http://waffle.io/teambot-club/teambot)
 
 Teambot is a Slack chatbot end-to-end solution that can be deployed to any infrastructure that can run Node.js. 
 Teambot works with the [Express](http://expressjs.com/) web application framework and [BOTKIT](https://www.npmjs.com/package/botkit#advanced-topics).
