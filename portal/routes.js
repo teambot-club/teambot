@@ -15,7 +15,8 @@ app
                 })
                 .state('done', {
                     url: '/done',
-                    templateUrl: 'views/done.html'
+                    templateUrl: 'views/done.html',
+                    controller: 'DoneController'
                 });
         }
     ]);

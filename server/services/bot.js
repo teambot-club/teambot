@@ -23,7 +23,7 @@ exports.start = function(req, res) {
                     return;
                 }
 
-                if (settings.clientId && settings.clientSecret && settings.redirectUri) {
+                if (settings && settings.clientId && settings.clientSecret && settings.redirectUri) {
 
                     bot.start(function() {
                         res.status(200).send('OK');

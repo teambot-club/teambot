@@ -32,6 +32,24 @@ app.factory('config', ['$http', function($http) {
             var configJson = this.get('slack');
 
             return configJson && configJson.clientId && configJson.clientSecret;
+        },
+
+        getConfiguration: function () {
+             return this.get('slack');
+        },
+
+        getTeamInfo: function() {
+            var teamInfoJSON = "";
+
+            jQuery.ajax({
+                url: '/team',
+                success: function(jsonString) {
+                    teamInfoJSON = jsonString;
+                },
+                async: false
+            });
+
+            return teamInfoJSON;
         }
     };
 }]);
