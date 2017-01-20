@@ -1,5 +1,26 @@
 <div class="container">
 	<md-content layout-gt-sm="row" layout-align="center" layout-padding style="background-color: #ffffff">
-		<h1>DONE</h1>
+		<div flex="50">
+			<md-subheader class="md-no-sticky"><h2>Teambot is configured</h2> </md-subheader>
+				<md-list-item>
+					<p> Slack team name: </p>
+					<p class="md-secondary">{{ slackConfiguration.teamName }}</p>
+				</md-list-item>
+				<md-list-item>
+					<p> Slack team URL: </p>
+					<a href="{{slackConfiguration.slackUrl}}" target="_blank" class="md-secondary">{{ slackConfiguration.slackUrl }}</a>
+				</md-list-item>
+				<md-list-item>
+					<p> ClientId:</p>
+					<p class="md-secondary">{{ slackConfiguration.clientId }}</p>
+				</md-list-item>
+				<md-list-item>
+					<p> ClientSecret:</p>
+					<p class="md-secondary">{{ slackConfiguration.clientSecret }}</p>
+				</md-list-item>
+				<md-list-item>
+					<md-button ng-click="navigateToConfigurationPage()" class="md-raised md-primary">Edit</md-button>
+				</md-list-item>
+		</div>
 	</md-content>
 </div>

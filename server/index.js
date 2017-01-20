@@ -1,6 +1,7 @@
 var express = require('express'),
     botService = require('server/services/bot'),
     settingsService = require('server/services/settings'),
+    teamsService = require('server/services/teams'),
     hookService = require('server/services/hook'),
     bodyParser = require('body-parser'),
     config = require('config');
@@ -44,6 +45,8 @@ exports.start = function(port) {
     server.get('/settings/:scope', settingsService.getByScope);
 
     server.put('/settings/:scope', settingsService.addSettings);
+
+    server.get('/team', teamsService.getTeamInfo);
 
     server.post('/githubWebHook/:team/', hookService.postGithubWebHook);
 
