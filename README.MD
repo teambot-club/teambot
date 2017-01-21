@@ -1,5 +1,6 @@
 ![TEAMBOT](portal/img/teambot-banner.png)
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/5a7fccdd830b47eab4472b6f2fadb7e3)](https://www.codacy.com/app/theqaangel/teambot?utm_source=github.com&utm_medium=referral&utm_content=teambot-club/teambot&utm_campaign=badger)
 [![Slack Channel](https://img.shields.io/badge/slack-channel-green.svg)](https://teambotclub.slack.com/messages/general)
 [![Stories in Ready](https://badge.waffle.io/teambot-club/teambot.png?label=ready&title=Ready)](http://waffle.io/teambot-club/teambot)
 
