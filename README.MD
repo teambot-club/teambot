@@ -45,9 +45,9 @@ Command line arguments can be passed to Teambot:
 
 `node teambot.js -[argument_name] [argument_value]`
 
-Argument      | Description                                                                                                               | Usage
---------------| -----------                                                                                                               | ------------
-devskill      | Load loacal skill in Teambot. Usefull for skills development. The value should be `[skill-name]@[file:local_skill_path]`  | `node teambot.js -devskill "skill-name@file:./path/to/your/skill"`
+Argument      | Description                                                                                                                                                     | Usage
+--------------| -----------                                                                                                                                                     | ------------
+skill         | Load skill in Teambot. Usefull for skills development. The value should be `[skill-name]@[file:local_skill_path]` or `[skill-name]@[github_url]`     | `node teambot.js -skill "skill-name@file:./path/to/your/skill"` or `node teambot.js -skill "skill-name@https://github.com/skill-repo-name"`
               
 
 ## Folder Structure
