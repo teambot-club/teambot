@@ -1,0 +1,14 @@
+sudo: required
+branches:
+    only:
+    - release
+language: node_js
+node_js:
+  - "6"
+install: true
+deploy:
+  provider: script
+  script: sh $TRAVIS_BUILD_DIR/deploy.sh
+  on:
+    branch: release
+

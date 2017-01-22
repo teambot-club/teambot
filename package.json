@@ -1,46 +1,45 @@
 {
-  "name": "teambot",
-  "version": "0.0.1",
-  "description": "The best Slack bot ever",
-  "main": "main.js",
-  "scripts": {
-    "test": "test",
-    "start": "node teambot.js",
-    "postinstall": "bower install --allow-root"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/teambot-club/teambot.git"
-  },
-  "keywords": [
-    "slack",
-    "bot",
-    "startup"
-  ], 
-  "author": "Teambot Team",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/teambot-club/teambot/issues"
-  },
-  "homepage": "http://teambot.club",
-  "dependencies": {
-    "botkit": "0.4.9",
-    "botkit-storage-mongo": "1.0.4",
-    "config": "1.21.0",
-    "request": "2.69.0",
-    "lodash": "3.9.3",
-    "nodegit": "^0.16.0",
-    "rimraf": "^2.5.4",
-    "tokenize-text": "1.1.3",
-    "jsonfile": "2.4.0",
-    "winston": "2.2.0",
-    "winston-mongodb": "1.6.4",
-    "body-parser": "1.15.2",
-    "open": "0.0.5",
-    "app-module-path": "2.1.0",
-    "mongodb": "2.2.11",
-    "npm": "4.1.1",
-    "npm-keyword": "4.2.0",
-    "package-json": "2.4.0"
-  }
+    "name": "teambot",
+    "version": "0.0.1",
+    "description": "The best Slack bot ever",
+    "main": "main.js",
+    "scripts": {
+        "start": "node teambot.js",
+        "postinstall": "bower install --allow-root"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/teambot-club/teambot.git"
+    },
+    "keywords": [
+        "slack",
+        "bot",
+        "startup"
+    ],
+    "author": "Teambot Team",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/teambot-club/teambot/issues"
+    },
+    "homepage": "http://teambot.club",
+    "dependencies": {
+        "botkit": "0.4.9",
+        "botkit-storage-mongo": "1.0.4",
+        "config": "1.21.0",
+        "request": "2.69.0",
+        "lodash": "3.9.3",
+        "nodegit": "^0.16.0",
+        "rimraf": "^2.5.4",
+        "tokenize-text": "1.1.3",
+        "jsonfile": "2.4.0",
+        "winston": "2.2.0",
+        "winston-mongodb": "1.6.4",
+        "body-parser": "1.15.2",
+        "open": "0.0.5",
+        "app-module-path": "2.1.0",
+        "mongodb": "2.2.11",
+        "npm": "4.1.1",
+        "npm-keyword": "4.2.0",
+        "package-json": "2.4.0"
+    }
 }
