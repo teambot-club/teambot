@@ -19,5 +19,3 @@ The above example will handle the message 'Number of fixed high bugs', 'Could yo
 
 The middleware also support definition of complex patterns. What the complex pattern means?
 If 'hello' is a pattern, 'hello|hi' is a complex pattern. So the complex pattern represents several patterns separated by |. The complex pattern is treated as found if one of its patterns is found. 
-
-## Skills Loader

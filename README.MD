@@ -63,11 +63,11 @@ devskill      | Load loacal skill in Teambot. Usefull for skills development. Th
 
     _TODO: Replace all configurations with commandline arguments._
 
-- [portal](portal/README.MD)
+- portal
     ---
     This is an AngularJS application. It's main purpose is to enable the end user to easily configure his Slack chatbot via Web interface.
 
-- [server](server/README.MD)
+- server
     ---
     This is an Express server that provide services consumed by Teambot Portal. 
 
