@@ -3,10 +3,19 @@
 [![Waffle.io](https://img.shields.io/badge/project-board-green.svg)](http://waffle.io/teambot-club/teambot)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/5a7fccdd830b47eab4472b6f2fadb7e3)](https://www.codacy.com/app/theqaangel/teambot?utm_source=github.com&utm_medium=referral&utm_content=teambot-club/teambot&utm_campaign=badger)
 
-[![Slack Channel](https://img.shields.io/badge/slack-channel-blue.svg)](https://teambotclub.slack.com/messages/general)
+[![Slack Channel](https://img.shields.io/badge/slack-channel-blue.svg)](https://teambotclub.slack.com/messages/public)
 
 Teambot is a Slack chatbot end-to-end solution that can be deployed to any infrastructure that can run Node.js. 
 Teambot works with the [Express](http://expressjs.com/) web application framework and [BOTKIT](https://www.npmjs.com/package/botkit#advanced-topics).
+
+# Motivation
+We are a development team. We use Slack alot! All our internal and external communication is there. On one of our internal hackathons we decided to develop a plugable end-to-end solution for Slack bots that should be used by dev teams and help them to increase their productivity.
+
+We know how cool it sounds Bot As A Service but let be honest - are you going to grand access to your internal resources to any public service? This is why we belive that your bot shuld be privately deployed on your side!
+
+[Botkit](https://www.npmjs.com/package/botkit#advanced-topics) was the framework we decided to use because it is trending and because we loved it almost immediately. 
+
+And this is it - **Teambot**! 
 
 # Getting Started
 
@@ -70,7 +79,7 @@ The above example will handle the message 'Number of fixed high bugs', 'Could yo
 The middleware also support definition of complex patterns. What the complex pattern means?
 If 'hello' is a pattern, 'hello|hi' is a complex pattern. So the complex pattern represents several patterns separated by |. The complex pattern is treated as found if one of its patterns is found. 
 
-### Config
+### Configuration
 
 There are 2 supported configurations:
 - default: configuration that is used if something else is not specified (Local development)
