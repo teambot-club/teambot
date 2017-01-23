@@ -7,25 +7,25 @@ var server = require('server'),
 //Trust all certificates
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 
-settingsProvider.addSettings('general', config, function (err, data) {
+settingsProvider.addSettings('general', config, function(err, data) {
     if (err) {
         console.log("Error while storing config. " + err);
         return;
     }
 
-    var devSkill = getDevSkill();
+    var skill = getSkill();
 
     server.start(config.server.port);
-    bot.start(null, devSkill);
+    bot.start(null, skill);
 });
 
-function getDevSkill() {
-    var devSkill;
-    process.argv.forEach(function (val, index, array) {
-        if(val === "-devskill") {
-            devSkill = array[index + 1];
+function getSkill() {
+    var skill;
+    process.argv.forEach(function(val, index, array) {
+        if (val === "-skill") {
+            skill = array[index + 1];
         }
     });
 
-    return devSkill;
+    return skill;
 }
