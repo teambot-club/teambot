@@ -1,10 +1,11 @@
 app
-    .controller('HomeController', ['$scope', '$http', 'config', '$location', '$state', '$mdToast',
-        function($scope, $http, config, $location, $state, $mdToast) {
-            var botkitUri = config.getBotkitUri();
+    .controller('HomeController', ['$scope', '$http', '$location', '$state', '$mdToast', 'configuration',
+        function($scope, $http, $location, $state, $mdToast, configuration) {
+            console.log(configuration);
+            var botkitUri = configuration.botKitUrl;
             $scope.isLoading = false;
 
-            if (config.isConfigured() && !$location.search().config) {
+            if (configuration.isConfigured && !$location.search().config) {
                 $state.go('done');
             }
 
@@ -14,7 +15,7 @@ app
                 $http({
                     method: 'POST',
                     url: '/startbot',
-                    data: { "clientId": $scope.clientId, "clientSecret": $scope.clientSecret, "redirectUri": config.getRedirectUri() }
+                    data: { "clientId": $scope.clientId, "clientSecret": $scope.clientSecret, "redirectUri": configuration.redirectUri }
                 }).then(function successCallback() {
                     $scope.isLoading = false;
                     window.location.href = botkitUri + '/login';

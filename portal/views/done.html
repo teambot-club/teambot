@@ -4,24 +4,23 @@
 			<md-subheader class="md-no-sticky"><h2>Teambot is configured</h2> </md-subheader>
 				<md-list-item>
 					<p> Slack team name: </p>
-					<p class="md-secondary">{{ slackConfiguration.teamName }}</p>
+					<p class="md-secondary">{{ config.teamName }}</p>
 				</md-list-item>
 				<md-list-item>
 					<p> Slack team URL: </p>
-					<a href="{{slackConfiguration.slackUrl}}" target="_blank" class="md-secondary">{{ slackConfiguration.slackUrl }}</a>
+					<a href="{{config.teamUrl}}" target="_blank" class="md-secondary">{{ config.teamUrl }}</a>
 				</md-list-item>
 				<md-list-item>
 					<p> ClientId:</p>
-					<p class="md-secondary">{{ slackConfiguration.clientId }}</p>
+					<p class="md-secondary">{{ config.clientId }}</p>
 				</md-list-item>
 				<md-list-item>
 					<p> ClientSecret:</p>
-					<p class="md-secondary">{{ slackConfiguration.clientSecret }}</p>
+					<p class="md-secondary">{{ config.clientSecret }}</p>
 				</md-list-item>
 				<md-list-item>
 					<md-button ng-click="navigateToConfigurationPage()" class="md-raised md-primary">Edit</md-button>
 				</md-list-item>
 		</div>
 	</md-content>
-	<md-progress-linear md-mode="query" ng-show="isLoading"></md-progress-linear>
 </div>
