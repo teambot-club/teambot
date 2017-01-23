@@ -6,6 +6,8 @@ exports.getTeamInfo = function (req, res) {
             res.status(500).send(err);
             return;
         }
+
+        data = data || {};
         res.status(200).send({
             teamName: data.name,
             teamUrl: data.url

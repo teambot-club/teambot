@@ -1,4 +1,4 @@
-app.factory('config', function() {
+app.factory('config', ['httpService', function(httpService) {
 
     return {
         get: function(scope) {
@@ -34,22 +34,12 @@ app.factory('config', function() {
             return configJson && configJson.clientId && configJson.clientSecret;
         },
 
-        getConfiguration: function () {
-             return this.get('slack');
+        getSlackConfiguration: function () {
+             return httpService.executeRequest("get", "/settings/slack");
         },
 
         getTeamInfo: function() {
-            var teamInfoJSON = "";
-
-            jQuery.ajax({
-                url: '/team',
-                success: function(jsonString) {
-                    teamInfoJSON = jsonString;
-                },
-                async: false
-            });
-
-            return teamInfoJSON;
+            return httpService.executeRequest("get", "/team");
         }
     };
 });

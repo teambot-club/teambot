@@ -1,5 +1,5 @@
 <div class="container">
-	<md-content layout-gt-sm="row" layout-align="center" layout-padding style="background-color: #ffffff">
+	<md-content ng-hide="isLoading" layout-gt-sm="row" layout-align="center" layout-padding style="background-color: #ffffff">
 		<div flex="50">
 			<md-subheader class="md-no-sticky"><h2>Teambot is configured</h2> </md-subheader>
 				<md-list-item>
@@ -23,4 +23,5 @@
 				</md-list-item>
 		</div>
 	</md-content>
+	<md-progress-linear md-mode="query" ng-show="isLoading"></md-progress-linear>
 </div>
