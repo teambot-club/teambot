@@ -48,27 +48,60 @@ Command line arguments can be passed to Teambot:
 Argument      | Description                                                                                                                                                     | Usage
 --------------| -----------                                                                                                                                                     | ------------
 skill         | Load skill in Teambot. Usefull for skills development. The value should be `[skill-name]@[file:local_skill_path]` or `[skill-name]@[github_url]`     | `node teambot.js -skill "skill-name@file:./path/to/your/skill"` or `node teambot.js -skill "skill-name@https://github.com/skill-repo-name"`
-              
 
-## Folder Structure
-- [bot](bot/README.MD)
-    --- 
-    This is the code that handles start/stop/restart of the Slack bot and provide some basic helper methods that expose functionality from Botkit (the heart of Teambot).
-    Furthermore there logic that process every single message (a.k.a middleware) is located here.
-    Teambot is designed as highly extensible chatbot solution having each functionality developed as separate `skill`. The loader of these skils is here as well. 
 
-- [config](config/README.MD)
-    ---
-    There are 2 types of configuration that Teambot supports: default (used for local development) and production (for production usage).
+### Middleware
 
-    _TODO: Replace all configurations with commandline arguments._
+This is a `hear` middleware. This means that it defines a custom logic for processing of messages.
+The middleware enables the behaviour definition providing keywords. What this means?
+Let's get this example:
 
-- portal
-    ---
-    This is an AngularJS application. It's main purpose is to enable the end user to easily configure his Slack chatbot via Web interface.
+```
+controller.hears(['How many fixed bugs with high severity we have?'], 'direct_message,direct_mention,mention', middleware.process, teamPulseSource.getHighFixedBugsCount);
+```
+When somebody say 'How many fixed bugs with high severity we have?' the teambot will reply with the result provided from invocation of teamPulseSource.getHighFixedBugsCount function. Are you kidding me - I have to write 'How many fixed bugs with high severity we have?'. I will make a mistake writing this down and the teambot reply will be - nothing!
 
-- server
-    ---
-    This is an Express server that provide services consumed by Teambot Portal. 
+This is where the Middleware take place. It provide a keyword definition of behaviours:
+```
+controller.hears(['fixed', 'bugs', 'high'], 'direct_message,direct_mention,mention', middleware.process, teamPulseSource.getHighFixedBugsCount);
+```
+The above example will handle the message 'Number of fixed high bugs', 'Could you please give me the number of fixed bugs with high severity'. The result will be the same - invocation of teamPulseSource.getHighFixedBugsCount.
 
+The middleware also support definition of complex patterns. What the complex pattern means?
+If 'hello' is a pattern, 'hello|hi' is a complex pattern. So the complex pattern represents several patterns separated by |. The complex pattern is treated as found if one of its patterns is found. 
+
+### Config
+
+There are 2 supported configurations:
+- default: configuration that is used if something else is not specified (Local development)
+- production: configuration that is used if NODE_ENV=production
+
+```
+{
+    "server": {
+        "port": "8888"
+    },
+    "botkit": {
+        "port": "3000" 
+    },
+    "mongoUri": "mongodb://127.0.0.1:27017",
+    "restrictOnlyOneUser": true,
+    "log": {
+        "enabled": true,
+        "level": 0 
+    }
+}
+```
+
+Property            | Description                                                                                                             
+--------------      | -----------                                                                                                             
+server.port         | Express server port [default: 8888]
+botkit.port         | Botkit port [default: 3000]
+mongoUri            | MongoDB connection string [default: local machine default port (27017)]
+restrictOnlyOneUser | Flag that enable/disable local development [default: true]. _More info provided below_
+log.enabled         | Enable/Disable logging [default: true]
+log.level           | Integer from 0 to 7 to adjust logging verbosity
+
+#### restrictOnlyOneUser
+This flag enables Teambot contributors to share same Slack Bot User to test Teambot locally. In this way the local Teambot respect only messages from the only user in local database (your Slack user) and skip the others.        
 
