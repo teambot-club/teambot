@@ -1,7 +1,6 @@
 app
     .controller('HomeController', ['$scope', '$http', '$location', '$state', '$mdToast', 'configuration',
         function($scope, $http, $location, $state, $mdToast, configuration) {
-            console.log(configuration);
             var botkitUri = configuration.botKitUrl;
             $scope.isLoading = false;
 

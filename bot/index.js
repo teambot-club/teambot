@@ -175,7 +175,7 @@ var teambot = function() {
         });
     }
 
-    function restart() {
+    function restart(callback) {
         if (_bots) {
             for (var property in _bots) {
                 if (_bots.hasOwnProperty(property)) {
@@ -184,7 +184,7 @@ var teambot = function() {
             }
             _bots = null;
         }
-        start();
+        start(callback);
     }
 
     return {

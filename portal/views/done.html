@@ -19,8 +19,9 @@
 					<p class="md-secondary">{{ config.clientSecret }}</p>
 				</md-list-item>
 				<md-list-item>
-					<md-button ng-click="navigateToConfigurationPage()" class="md-raised md-primary">Edit</md-button>
+					<md-button ng-click="resetSettings()" class="md-raised md-primary">Reset Configuration</md-button>
 				</md-list-item>
 		</div>
 	</md-content>
+	<md-progress-linear md-mode="query" ng-show="isLoading"></md-progress-linear>
 </div>

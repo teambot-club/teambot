@@ -1,16 +1,16 @@
-app.factory('config', ['httpService', function (httpService) {
+app.factory('configService', ['httpService', 'constants', function (httpService, constants) {
 
     return {
         getConfig: function () {
             var configuration = {};
-            return httpService.executeRequest("get", "/settings/slack")
+            return httpService.executeRequest(constants.httpMethods.get, '/settings/slack')
                 .then(function (result) {
                     configuration.slack = result.data || {};
-                    return httpService.executeRequest("get", "/team") 
+                    return httpService.executeRequest(constants.httpMethods.get, '/team')
                 })
                 .then(function (result) {
                     configuration.team = result.data;
-                    return httpService.executeRequest("get", "/settings/general");
+                    return httpService.executeRequest(constants.httpMethods.get, '/settings/general');
                 })
                 .then(function (result) {
                     var generalConfig = result.data;
@@ -18,6 +18,13 @@ app.factory('config', ['httpService', function (httpService) {
                     configuration.redirectUri = configuration.botKitUrl + '/oauth';
                     configuration.isConfigured = configuration && configuration.slack && configuration.slack.clientId && configuration.slack.clientSecret;
                     return configuration;
+                });
+        },
+
+        removeConfig: function () {
+            return httpService.executeRequest(constants.httpMethods.delete, '/settings/slack')
+                .then(function () {
+                    return httpService.executeRequest(constants.httpMethods.delete, '/team');
                 });
         }
     };

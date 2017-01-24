@@ -1,11 +1,11 @@
-'use strict()';
+'use strict';
 
 app
     .config(['$stateProvider',
         '$urlRouterProvider',
         function ($stateProvider, $urlRouterProvider) {
-            var resolveConfiguration = ['config', function (config) {
-                return config.getConfig();
+            var resolveConfiguration = ['configService', function (configService) {
+                return configService.getConfig();
             }];
 
             $urlRouterProvider.otherwise('/');
