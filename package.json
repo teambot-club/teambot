@@ -1,6 +1,6 @@
 {
     "name": "teambot",
-    "version": "0.0.1",
+    "version": "0.0.3",
     "description": "Slack chatbot end-to-end solution that can be deployed to any infrastructure that can run Node.js",
     "main": "main.js",
     "scripts": {
