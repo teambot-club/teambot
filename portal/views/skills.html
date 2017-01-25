@@ -1,0 +1,31 @@
+<md-content class='md-padding'>
+    <h2>Install your custom skill</h2>
+    <div>
+        <md-input-container>
+            <label>Github URL</label>
+            <input ng-model="customSkillName">
+        </md-input-container>
+
+         <md-input-container>
+            <md-button ng-disabled="!customSkillName" ng-click="installSkill(customSkillName)" class="md-raised md-primary">Install</md-button>
+        </md-input-container>
+    </div>
+</md-content>
+
+<h2 class='md-padding'>Or choose from the comunity</h2>
+<md-content class='md-padding' layout="row" layout-wrap>
+    <md-card layout-align="center center" ng-repeat="skill in skills">
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">{{ skill.name }}</span>
+                <span class="md-subhead">{{ skill.description }}</span>
+            </md-card-title-text>
+            <md-card-title-media>
+                <div class="md-media-sm card-media"></div>
+            </md-card-title-media>
+        </md-card-title>
+        <md-card-actions layout="row" layout-align="end center">
+            <md-button ng-click="installSkill('https://github.com/teambot-club/teambot-hello')">Install</md-button>
+        </md-card-actions>
+    </md-card>
+</md-content>

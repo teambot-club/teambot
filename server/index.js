@@ -49,6 +49,8 @@ exports.start = function(port) {
 
     server.delete('/team', teamsService.removeTeamInfo);
 
+    
+    server.post('/install-skill', botService.installSkill);
 
     server.get('/skills', skillsService.getPublicSkillsSummary);
 

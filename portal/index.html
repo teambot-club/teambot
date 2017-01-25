@@ -21,6 +21,11 @@
     <md-content layout-gt-sm="row" layout-align="center" layout-padding>
         <img layout-align="center" src="img/teambot.png" style="width: 300px; height: 300px;" alt="Teambot">
     </md-content>
+
+	<md-tabs>
+		<md-tab label="Home" ui-sref="home"></md-tab>  
+		<md-tab label="Skills" ui-sref="skills"></md-tab>
+	</md-tabs>
     <div id="uiview" ui-view></div>
     <script src="js/jquery/dist/jquery.js"></script>
     <script src="js/angular/angular.js"></script>
@@ -31,9 +36,13 @@
     <script src="js/angular-messages/angular-messages.js"></script>
     <script src="app.js"></script>
     <script src="services/config.js"></script>
+	<script src="services/skills-service.js"></script>
     <script src="services/http-service.js"></script>
+	<script src="services/loader-service.js"></script>
+	<script src="services/notification-service.js"></script>
     <script src="controllers/home.js"></script>
     <script src="controllers/done.js"></script>
+	<script src="controllers/skills.js"></script>
     <script src="routes.js"></script>
 </body>
 

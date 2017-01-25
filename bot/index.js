@@ -10,7 +10,7 @@ var teambot = function() {
         skillsLoader = require('bot/skills-loader'),
         settingsProvider = require('server/providers/settings-provider'),
         winston = require('winston');
-
+        middleware = require('bot/middleware'),
     require('winston-mongodb').MongoDB;
 
     function log(message) {
@@ -47,8 +47,6 @@ var teambot = function() {
                 logLevel: config.verbose
 
             });
-
-            var middleware = require('bot/middleware');
 
             skillsLoader.installPredefinedSkills(botContext.controller, middleware, skill, function() {
 
@@ -213,9 +211,15 @@ var teambot = function() {
         start(callback, _skill);
     }
 
+    function installSkill(skillName, callback) {
+        skillsLoader.install(controller, middleware, skillName, callback);
+    }
+
     return {
         start: start,
         restart: restart
+        log: log,
+        installSkill: installSkill
     };
 
 }();

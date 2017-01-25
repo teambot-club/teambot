@@ -4,7 +4,12 @@ var app = angular
     .module('PlatformRobots', [
         'ui.router',
         'ngMaterial'
-    ]).constant('constants', {
+    ])
+    .config(function ($mdThemingProvider) {
+        $mdThemingProvider.theme("success-toast");
+        $mdThemingProvider.theme("error-toast");
+    })
+    .constant('constants', {
         httpMethods: {
             "get": "get",
             "post": "post",
