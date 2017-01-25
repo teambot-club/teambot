@@ -1,9 +1,9 @@
 app
     .controller('DoneController', ['$scope', 'config', '$location',
-        function($scope, config, $location) {
+        function ($scope, config, $location) {
             var teamInfo = config.getTeamInfo();
             var settings = config.getConfiguration("slack");
-            
+
             $scope.slackConfiguration = {
                 clientId: settings.clientId,
                 clientSecret: settings.clientSecret,
@@ -12,7 +12,7 @@ app
             }
 
             $scope.navigateToConfigurationPage = function () {
-                 $location.url('/?config');
+                $location.url('/?config');
             }
         }
     ]);
