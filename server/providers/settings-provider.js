@@ -1,6 +1,4 @@
-var dbClient = require('mongodb').MongoClient,
-    config = require('config'),
-    dataProvider = require('server/providers/data-provider');
+var dataProvider = require('server/providers/data-provider');
 
 var SettingsProvider = function() {
 
@@ -35,7 +33,7 @@ var SettingsProvider = function() {
 
     function removeScope(scope, callback) {
         try {
-            dataProvider.remove(req.params.scope, 'settings', callback);
+            dataProvider.remove(scope, 'settings', callback);
 
         } catch (err) {
             callback(err);

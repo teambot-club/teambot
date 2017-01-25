@@ -15,7 +15,7 @@ We know how cool it sounds Bot As A Service but let be honest - are you going to
 
 [Botkit](https://www.npmjs.com/package/botkit#advanced-topics) was the framework we decided to use because it is trending and because we loved it almost immediately. 
 
-And this is it - **Teambot**! 
+And this is it - **Teambot**!
 
 # Getting Started
 
@@ -26,7 +26,7 @@ The fastest and easiest way to get started is to run MongoDB and Teambot locally
 ### Prerequisites
 
 - Node version - 6.9.4+
-- bower (run `npm install -g bower`)
+- bower (run `npm install -g bower`) 
 - MongoDB
 
 ### Setup
