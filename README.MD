@@ -2,6 +2,7 @@
 
 [![Waffle.io](https://img.shields.io/badge/project-board-green.svg)](http://waffle.io/teambot-club/teambot)
 [![Code Climate](https://codeclimate.com/github/teambot-club/teambot/badges/gpa.svg)](https://codeclimate.com/github/teambot-club/teambot)
+[![npm](https://img.shields.io/npm/v/teambot.svg)](https://www.npmjs.com/package/teambot)
 
 [![Slack Channel](https://img.shields.io/badge/slack-channel-blue.svg)](https://teambotclub.slack.com/messages/public)
 
