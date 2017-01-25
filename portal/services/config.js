@@ -1,4 +1,4 @@
-app.factory('config', ['$http', function($http) {
+app.factory('config', function() {
 
     return {
         get: function(scope) {
@@ -52,4 +52,4 @@ app.factory('config', ['$http', function($http) {
             return teamInfoJSON;
         }
     };
-}]);
+});

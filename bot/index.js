@@ -2,8 +2,7 @@ var _bots = null,
     hasOauthServer = false;
 
 var teambot = function() {
-    var fs = require('fs'),
-        Botkit = require('botkit'),
+    var Botkit = require('botkit'),
         skillsLoader = require('bot/skills-loader'),
         settingsProvider = require('server/providers/settings-provider'),
         winston = require('winston'),
@@ -15,7 +14,6 @@ var teambot = function() {
 
         settingsProvider.getByScope('general', function(err, config) {
             var mongoUri = config.mongoUri,
-                serverPort = config.server.port,
                 mongoStorage = require('botkit-storage-mongo')({ mongoUri: mongoUri });
 
             controller = Botkit.slackbot({
@@ -37,7 +35,7 @@ var teambot = function() {
 
             var middleware = require('bot/middleware');
 
-            skillsLoader.installPredefinedSkills(controller, middleware, devSkill, function(err, data) {
+            skillsLoader.installPredefinedSkills(controller, middleware, devSkill, function() {
 
                 settingsProvider.getByScope('slack', function(err, config) {
 
@@ -79,10 +77,6 @@ var teambot = function() {
         return _bots;
     }
 
-    function getLocalUsers() {
-        return _localUsers;
-    }
-
     function isLocalUser(userId) {
         var _isLocalUser = false;
 
@@ -118,7 +112,7 @@ var teambot = function() {
                 scopes: ['bot']
             });
 
-            controller.setupWebserver(3000, function(err, webserver) {
+            controller.setupWebserver(3000, function() {
                 controller.createWebhookEndpoints(controller.webserver);
                 controller.createOauthEndpoints(controller.webserver, function(err, req, res) {
                     if (err) {

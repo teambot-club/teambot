@@ -24,7 +24,6 @@ var DataProvider = function () {
             });
         } catch (err) {
             callback(err, null);
-            db.close();
         }
     }
 
@@ -52,7 +51,6 @@ var DataProvider = function () {
             });
         } catch (err) {
             callback(err, null);
-            db.close();
         }
     }
 
@@ -76,7 +74,6 @@ var DataProvider = function () {
             });
         } catch (err) {
             callback(err, null);
-            db.close();
         }
     }
 
@@ -103,7 +100,6 @@ var DataProvider = function () {
             });
         } catch (err) {
             callback(err, null);
-            db.close();
         }
     }
 

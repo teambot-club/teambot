@@ -7,7 +7,7 @@ var server = require('server'),
 //Trust all certificates
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 
-settingsProvider.addSettings('general', config, function(err, data) {
+settingsProvider.addSettings('general', config, function(err) {
     if (err) {
         console.log("Error while storing config. " + err);
         return;

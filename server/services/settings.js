@@ -1,5 +1,4 @@
-var configHelper = require('config'),
-    settingsProvider = require('server/providers/settings-provider');
+var settingsProvider = require('server/providers/settings-provider');
 
 exports.getByScope = function (req, res) {
 
@@ -16,7 +15,6 @@ exports.addSettings = function (req, res) {
 
     settingsProvider.addSettings(req.params.scope, req.body, function (err, data) {
         if (err) {
-            callback(err);
             return;
         }
         res.status(200).send(data);
