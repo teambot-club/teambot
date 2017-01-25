@@ -28,4 +28,4 @@ app.factory('configService', ['httpService', 'constants', function (httpService,
                 });
         }
     };
-});
+}]);
