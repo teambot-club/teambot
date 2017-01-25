@@ -1,0 +1,18 @@
+{
+    "env": {
+        "browser": true,
+        "node": true
+    },
+    "extends": [
+        "eslint:recommended"
+    ],
+    "rules": {
+        // Override our default settings just for this directory
+        "no-console": 0
+    },
+    "globals": {
+        "app": true,
+        "jQuery": true,
+        "angular": true
+    }
+}
