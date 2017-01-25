@@ -1,6 +1,6 @@
 {
     "name": "teambot-skills",
-    "version": "0.0.2",
+    "version": "0.0.1",
     "description": "Predefined list of Teambot skills",
     "dependencies": {
         "teambot-hello": "https://github.com/teambot-club/teambot-hello"

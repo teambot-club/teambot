@@ -1,7 +1,7 @@
 {
     "name": "teambot",
     "version": "0.0.1",
-    "description": "The best Slack bot ever",
+    "description": "Slack chatbot end-to-end solution that can be deployed to any infrastructure that can run Node.js",
     "main": "main.js",
     "scripts": {
         "start": "node teambot.js",
