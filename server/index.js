@@ -3,8 +3,7 @@ var express = require('express'),
     settingsService = require('server/services/settings'),
     teamsService = require('server/services/teams'),
     hookService = require('server/services/hook'),
-    bodyParser = require('body-parser'),
-    config = require('config');
+    bodyParser = require('body-parser');
 
 exports.start = function(port) {
 
