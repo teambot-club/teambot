@@ -1,7 +1,7 @@
 ![TEAMBOT](portal/img/teambot-banner.png)
 
 [![Waffle.io](https://img.shields.io/badge/project-board-green.svg)](http://waffle.io/teambot-club/teambot)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/5a7fccdd830b47eab4472b6f2fadb7e3)](https://www.codacy.com/app/theqaangel/teambot?utm_source=github.com&utm_medium=referral&utm_content=teambot-club/teambot&utm_campaign=badger)
+[![Code Climate](https://codeclimate.com/github/teambot-club/teambot/badges/gpa.svg)](https://codeclimate.com/github/teambot-club/teambot)
 
 [![Slack Channel](https://img.shields.io/badge/slack-channel-blue.svg)](https://teambotclub.slack.com/messages/public)
 
