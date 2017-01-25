@@ -74,7 +74,7 @@ var SkillsLoader = function () {
         try {
             isSkill = skillKeywords.indexOf('teambot') > -1;
         } catch (err) {
-  
+            console.log(err);
         }
 
         return isSkill;

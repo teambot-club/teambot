@@ -15,7 +15,7 @@ app
                     method: 'POST',
                     url: '/startbot',
                     data: { "clientId": $scope.clientId, "clientSecret": $scope.clientSecret, "redirectUri": config.getRedirectUri() }
-                }).then(function successCallback(response) {
+                }).then(function successCallback() {
                     $scope.isLoading = false;
                     window.location.href = botkitUri + '/login';
                 }, function errorCallback(response) {

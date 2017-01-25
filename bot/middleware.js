@@ -1,7 +1,6 @@
 "use strict";
 
-var Tokenizer = require('tokenize-text'),
-    config = require('config'),
+var config = require('config'),
     restrictOnlyOneUser = config.get('restrictOnlyOneUser');
 
 var Middleware = function () {
@@ -15,10 +14,7 @@ var Middleware = function () {
             }
         }
 
-        var tokenize = new Tokenizer();
-        var tokenizedMessage = tokenize.words()(message.text),
-            allKeywordsFound = false,
-            match = null;
+        var match = null;
 
         for (var index = 0; index < patterns.length; index++) {
             var pattern = patterns[index];
