@@ -15,7 +15,7 @@ exports.postGithubWebHook = function(req, res) {
 
             if (prOwnerSlackUsername) {
                 var activeBots = bot.getBots();
-                var targetUser = activeBots[req.params.team].api.users.info({ "user": prOwnerSlackUsername }, function(err, result) {
+                activeBots[req.params.team].api.users.info({ "user": prOwnerSlackUsername }, function(err, result) {
                     activeBots[req.params.team].api.chat.postMessage({
                         "channel": '@' + result.user.name,
                         "as_user": true,
@@ -39,8 +39,8 @@ exports.postGithubWebHook = function(req, res) {
                                 }
                             ]
                         }]
-                    }, function(error, result2) {
-                        var a = 0;
+                    }, function() {
+                        
                     });
 
                     res.status(200).send('OK');
