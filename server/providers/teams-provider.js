@@ -19,8 +19,17 @@ var TeamsProvider = function() {
         }
     }
 
+    function removeTeamInfo(callback) {
+         try {
+            dataProvider.remove({}, 'teams', callback);
+        } catch (err) {
+            callback(err);
+        }
+    }
+
     return {
-        getTeamInfo: getTeamInfo
+        getTeamInfo: getTeamInfo,
+        removeTeamInfo: removeTeamInfo
     };
 }();
 

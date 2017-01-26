@@ -33,7 +33,7 @@ var SettingsProvider = function() {
 
     function removeScope(scope, callback) {
         try {
-            dataProvider.remove(scope, 'settings', callback);
+            dataProvider.remove({ "scope": scope }, 'settings', callback);
 
         } catch (err) {
             callback(err);

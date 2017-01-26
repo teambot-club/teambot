@@ -47,6 +47,8 @@ exports.start = function(port) {
 
     server.get('/team', teamsService.getTeamInfo);
 
+    server.delete('/team', teamsService.removeTeamInfo);
+
     server.post('/githubWebHook/:team/', hookService.postGithubWebHook);
 
     server.listen(port, function() {
