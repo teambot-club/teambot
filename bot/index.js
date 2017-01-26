@@ -134,7 +134,9 @@ var teambot = function () {
             controller.on('interactive_message_callback', function postInteractiveMessage(bot, message) {
                 var callbackParts = message.callback_id.split(":");
                 var skill = callbackParts[0];
-                var buttonsGroup = callbackParts[1];
+                if (callbackParts.length > 1) {
+                    var buttonsGroup = callbackParts[1];
+                }
 
                 try {
                     require(skill);
