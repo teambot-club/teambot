@@ -1,53 +1,36 @@
 var bot = require('bot');
 
-exports.postGithubWebHook = function(req, res) {
-    if (req && req.body && req.body.review && req.body.review.state === "approved") {
-        var prOwner = req.body.pull_request.user.login;
-        var prOwnerSlackUsername = null;
-        var controller = bot.getController();
-        controller.storage.users.all(function(err, users) {
-            for (var i in users) {
-                if (users[i].githubUsername === prOwner) {
-                    prOwnerSlackUsername = users[i].id;
-                    break;
-                }
-            }
+function getCurrentBot() {
+    var activeBots = bot.getBots();
+    var currentBot = activeBots[Object.keys(activeBots)[0]];
 
-            if (prOwnerSlackUsername) {
-                var activeBots = bot.getBots();
-                activeBots[req.params.team].api.users.info({ "user": prOwnerSlackUsername }, function(err, result) {
-                    activeBots[req.params.team].api.chat.postMessage({
-                        "channel": '@' + result.user.name,
-                        "as_user": true,
-                        "attachments": [{
-                            color: "warning",
-                            title: "Your '" + req.body.pull_request.title + "' pull request was just Approved! ",
-                            title_link: req.body.review.html_url,
-                            callback_id: "github:" + req.body.review.html_url,
-                            attachment_type: 'default',
-                            actions: [{
-                                    "name": "merge",
-                                    "text": "Merge",
-                                    "value": "merge",
-                                    "type": "button"
-                                },
-                                {
-                                    "name": "close",
-                                    "text": "Close",
-                                    "value": "close",
-                                    "type": "button"
-                                }
-                            ]
-                        }]
-                    }, function() {
-                        
-                    });
+    return currentBot;
+}
 
-                    res.status(200).send('OK');
-                });
-            } else {
-                res.status(200).send('OK');
-            }
+function getCurrentController() {
+    var currentController = bot.getController();
+
+    return currentController;
+}
+
+exports.postHook = function postHook(req, res) {
+    try {
+        require(req.params.skill);
+    } catch (ex) {
+        return res.status(400).send("The '" + req.params.skill + "' skill is not installed.");
+    }
+
+    try {
+        var targetHooksFunction = require(req.params.skill + "/hooks");
+    } catch (ex) {
+        return res.status(400).send("The '" + req.params.skill + "' skill does not support hooks handling.");
+    }
+
+    try {
+        targetHooksFunction(req.body, getCurrentController(), getCurrentBot(), function (message) {
+            return res.status(200).send(message || "OK");
         });
+    } catch (ex) {
+        return res.status(400).send("An exception occurred during hook handling: '" + ex.message + "'");
     }
 };
