@@ -1,13 +1,13 @@
 var dbClient = require('mongodb').MongoClient,
     config = require('config');
 
-var DataProvider = function () {
+var DataProvider = function() {
 
     var mongoUri = config.get('mongoUri');
 
     function get(selector, collectionName, callback) {
         try {
-            dbClient.connect(mongoUri, function (err, db) {
+            dbClient.connect(mongoUri, function(err, db) {
 
                 if (!db) {
                     console.log('Connection to ' + mongoUri + "can't be established!");
@@ -17,7 +17,7 @@ var DataProvider = function () {
 
                 var collection = db.collection(collectionName);
 
-                collection.find(selector).toArray(function (err, docs) {
+                collection.find(selector).toArray(function(err, docs) {
                     callback(err, docs);
                     db.close();
                 });
@@ -29,7 +29,7 @@ var DataProvider = function () {
 
     function insert(document, collectionName, callback) {
         try {
-            dbClient.connect(mongoUri, function (err, db) {
+            dbClient.connect(mongoUri, function(err, db) {
 
                 if (!db) {
                     console.log('Connection to ' + mongoUri + "can't be established!");
@@ -44,7 +44,7 @@ var DataProvider = function () {
                     array = [document];
                 }
 
-                collection.insertMany(array, function (err, result) {
+                collection.insertMany(array, function(err, result) {
                     callback(err, result);
                     db.close();
                 });
@@ -57,7 +57,7 @@ var DataProvider = function () {
     function remove(selector, collectionName, callback) {
         try {
 
-            dbClient.connect(mongoUri, function (err, db) {
+            dbClient.connect(mongoUri, function(err, db) {
 
                 if (!db) {
                     console.log('Connection to ' + mongoUri + "can't be established!");
@@ -67,7 +67,7 @@ var DataProvider = function () {
 
                 var collection = db.collection(collectionName);
 
-                collection.deleteOne(selector, function (err, result) {
+                collection.deleteOne(selector, function(err, result) {
                     callback(err, result);
                     db.close();
                 });
@@ -80,7 +80,7 @@ var DataProvider = function () {
     function update(selector, document, collectionName, callback) {
         try {
 
-            dbClient.connect(mongoUri, function (err, db) {
+            dbClient.connect(mongoUri, function(err, db) {
 
                 if (!db) {
                     console.log('Connection to ' + mongoUri + "can't be established!");
@@ -94,7 +94,7 @@ var DataProvider = function () {
                     $set: document
                 }, {
                     upsert: true
-                }, function (err, result) {
+                }, function(err, result) {
                     callback(err, result);
                 });
             });

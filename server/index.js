@@ -5,7 +5,7 @@ var express = require('express'),
     hookService = require('server/services/hook'),
     bodyParser = require('body-parser');
 
-exports.start = function (port) {
+exports.start = function(port) {
 
     //App Server
     var server = express();
@@ -14,7 +14,7 @@ exports.start = function (port) {
 
     server.use(bodyParser.json());
 
-    server.use(function (req, res, next) {
+    server.use(function(req, res, next) {
 
         // Website you wish to allow to connect
         res.setHeader('Access-Control-Allow-Origin', '*');
@@ -51,7 +51,7 @@ exports.start = function (port) {
 
     server.post('/hooks/:skill', hookService.postHook);
 
-    server.listen(port, function () {
+    server.listen(port, function() {
         console.log('Teambot Server started on port: %s ', port);
     });
 };

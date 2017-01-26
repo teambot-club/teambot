@@ -3,8 +3,8 @@
 app
     .config(['$stateProvider',
         '$urlRouterProvider',
-        function ($stateProvider, $urlRouterProvider) {
-            var resolveConfiguration = ['configService', function (configService) {
+        function($stateProvider, $urlRouterProvider) {
+            var resolveConfiguration = ['configService', function(configService) {
                 return configService.getConfig();
             }];
 

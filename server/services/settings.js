@@ -1,8 +1,8 @@
 var settingsProvider = require('server/providers/settings-provider');
 
-exports.getByScope = function (req, res) {
+exports.getByScope = function(req, res) {
 
-    settingsProvider.getByScope(req.params.scope, function (err, data) {
+    settingsProvider.getByScope(req.params.scope, function(err, data) {
         if (err) {
             res.status(500).send(err);
             return;
@@ -11,9 +11,9 @@ exports.getByScope = function (req, res) {
     });
 };
 
-exports.addSettings = function (req, res) {
+exports.addSettings = function(req, res) {
 
-    settingsProvider.addSettings(req.params.scope, req.body, function (err, data) {
+    settingsProvider.addSettings(req.params.scope, req.body, function(err, data) {
         if (err) {
             return;
         }
@@ -21,9 +21,9 @@ exports.addSettings = function (req, res) {
     });
 };
 
-exports.removeScope = function (req, res) {
+exports.removeScope = function(req, res) {
 
-    settingsProvider.removeScope(req.params.scope, function (err, data) {
+    settingsProvider.removeScope(req.params.scope, function(err, data) {
         if (err) {
             res.status(500).send(err);
             return;
@@ -32,9 +32,9 @@ exports.removeScope = function (req, res) {
     });
 };
 
-exports.addScope = function (req, res) {
+exports.addScope = function(req, res) {
 
-    settingsProvider.insert(req.params.scope, req.body, function (err, data) {
+    settingsProvider.insert(req.params.scope, req.body, function(err, data) {
         if (err) {
             res.status(500).send(err);
             return;
