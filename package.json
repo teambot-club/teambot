@@ -28,6 +28,7 @@
         "config": "1.21.0",
         "request": "2.69.0",
         "lodash": "3.9.3",
+        "express": "4.14.0",
         "nodegit": "^0.16.0",
         "rimraf": "^2.5.4",
         "tokenize-text": "1.1.3",
