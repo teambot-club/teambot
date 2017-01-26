@@ -1,5 +1,5 @@
 var SkillsLoader = function() {
-    var npm = require("npm"),
+    var npm = require('npm'),
         fs = require('fs');
 
 
@@ -18,7 +18,7 @@ var SkillsLoader = function() {
                 }
 
                 if (data.length === 0) {
-                    callback(err, "Modules already installed");
+                    callback(err, 'Modules already installed');
                     return;
                 } else {
                     loadTeambotSkillsOnly(skillsArr, controller, middleware);
@@ -27,7 +27,7 @@ var SkillsLoader = function() {
                 }
             });
 
-            npm.on("log", function(message) {
+            npm.on('log', function(message) {
                 // log the progress of the installation
                 console.log(message);
             });
@@ -40,15 +40,15 @@ var SkillsLoader = function() {
 
             if (isTeamBotSkill(skill)) {
                 require(skill)(controller, middleware);
-                console.log(skill + " IS installed successfully");
+                console.log(skill + ' IS installed successfully');
             } else {
-                console.log(skill + " IS NOT valid Teambot skill");
+                console.log(skill + ' IS NOT valid Teambot skill');
             }
         }
     }
 
     function getSkillShortName(name) {
-        var versionIndex = name.indexOf("@");
+        var versionIndex = name.indexOf('@');
         var shortName = versionIndex !== -1 ?
             name.substring(0, versionIndex) :
             name;
@@ -96,7 +96,7 @@ var SkillsLoader = function() {
 
         var deps = [];
         for (var mod in p.dependencies) {
-            deps.push(mod + "@" + p.dependencies[mod]);
+            deps.push(mod + '@' + p.dependencies[mod]);
         }
         return deps;
     }

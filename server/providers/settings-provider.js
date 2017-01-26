@@ -5,7 +5,7 @@ var SettingsProvider = function() {
     function getByScope(scope, callback) {
         try {
 
-            dataProvider.get({ "scope": scope }, 'settings', function(err, data) {
+            dataProvider.get({ 'scope': scope }, 'settings', function(err, data) {
                 if (err) {
                     callback(err);
                     return;
@@ -24,7 +24,7 @@ var SettingsProvider = function() {
     function addSettings(scope, settings, callback) {
         try {
 
-            dataProvider.update({ "scope": scope }, settings, 'settings', callback);
+            dataProvider.update({ 'scope': scope }, settings, 'settings', callback);
 
         } catch (err) {
             callback(err);
@@ -33,7 +33,7 @@ var SettingsProvider = function() {
 
     function removeScope(scope, callback) {
         try {
-            dataProvider.remove({ "scope": scope }, 'settings', callback);
+            dataProvider.remove({ 'scope': scope }, 'settings', callback);
 
         } catch (err) {
             callback(err);

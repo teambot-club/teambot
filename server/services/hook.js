@@ -21,14 +21,14 @@ exports.postHook = function postHook(req, res) {
     }
 
     try {
-        var targetHooksFunction = require(req.params.skill + "/hooks");
+        var targetHooksFunction = require(req.params.skill + '/hooks');
     } catch (ex) {
         return res.status(400).send("The '" + req.params.skill + "' skill does not support hooks handling.");
     }
 
     try {
         targetHooksFunction(req.body, getCurrentController(), getCurrentBot(), function (message) {
-            return res.status(200).send(message || "OK");
+            return res.status(200).send(message || 'OK');
         });
     } catch (ex) {
         return res.status(400).send("An exception occurred during hook handling: '" + ex.message + "'");
