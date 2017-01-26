@@ -27,7 +27,7 @@ exports.postHook = function postHook(req, res) {
     }
 
     try {
-        targetHooksFunction(req.body, getCurrentController(), getCurrentBot(), function (message) {
+        targetHooksFunction(req.body, getCurrentController(), getCurrentBot(), function(message) {
             return res.status(200).send(message || 'OK');
         });
     } catch (ex) {

@@ -20,7 +20,7 @@ var TeamsProvider = function() {
     }
 
     function removeTeamInfo(callback) {
-         try {
+        try {
             dataProvider.remove({}, 'teams', callback);
         } catch (err) {
             callback(err);
