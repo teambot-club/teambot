@@ -21,7 +21,7 @@ var teambot = function () {
                     levels: winston.config.syslog.levels,
                     transports: [
                         process.env.NODE_ENV == 'production' ?
-                            new (winston.transports.MongoDB)({ "db": mongoUri + "/admin" }) :
+                            new (winston.transports.MongoDB)({ 'db': mongoUri + '/admin' }) :
                             new (winston.transports.Console)()
                     ]
                 }),
@@ -40,7 +40,7 @@ var teambot = function () {
                 settingsProvider.getByScope('slack', function (err, config) {
 
                     if (!config || !config.clientId || !config.clientSecret || !config.redirectUri) {
-                        console.log("Slack app is not configured!");
+                        console.log('Slack app is not configured!');
                         return;
                     }
 
@@ -132,7 +132,7 @@ var teambot = function () {
         function trackBot(bot) {
             _bots[bot.config.token] = bot;
             controller.on('interactive_message_callback', function postInteractiveMessage(bot, message) {
-                var callbackParts = message.callback_id.split(":");
+                var callbackParts = message.callback_id.split(':');
                 var skill = callbackParts[0];
                 if (callbackParts.length > 1) {
                     var buttonsGroup = callbackParts[1];
@@ -145,7 +145,7 @@ var teambot = function () {
                 }
 
                 try {
-                    var targetButtonsFunction = require(skill + "/buttons");
+                    var targetButtonsFunction = require(skill + '/buttons');
                 } catch (ex) {
                     return bot.reply(message, "Invalid callbackId '" + message.callback_id + "'. The '" + skill + "' skill does not support button clicks handling.");
                 }

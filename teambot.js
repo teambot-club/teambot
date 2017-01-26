@@ -9,7 +9,7 @@ process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 
 settingsProvider.addSettings('general', config, function(err) {
     if (err) {
-        console.log("Error while storing config. " + err);
+        console.log('Error while storing config. ' + err);
         return;
     }
 
@@ -22,7 +22,7 @@ settingsProvider.addSettings('general', config, function(err) {
 function getSkill() {
     var skill;
     process.argv.forEach(function(val, index, array) {
-        if (val === "-skill") {
+        if (val === '-skill') {
             skill = array[index + 1];
         }
     });

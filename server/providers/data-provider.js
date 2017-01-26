@@ -10,7 +10,7 @@ var DataProvider = function () {
             dbClient.connect(mongoUri, function (err, db) {
 
                 if (!db) {
-                    console.log("Connection to " + mongoUri + "can't be established!");
+                    console.log('Connection to ' + mongoUri + "can't be established!");
                     callback(err, null);
                     return;
                 }
@@ -32,7 +32,7 @@ var DataProvider = function () {
             dbClient.connect(mongoUri, function (err, db) {
 
                 if (!db) {
-                    console.log("Connection to " + mongoUri + "can't be established!");
+                    console.log('Connection to ' + mongoUri + "can't be established!");
                     callback(err, null);
                     return;
                 }
@@ -60,7 +60,7 @@ var DataProvider = function () {
             dbClient.connect(mongoUri, function (err, db) {
 
                 if (!db) {
-                    console.log("Connection to " + mongoUri + "can't be established!");
+                    console.log('Connection to ' + mongoUri + "can't be established!");
                     callback(err, null);
                     return;
                 }
@@ -83,7 +83,7 @@ var DataProvider = function () {
             dbClient.connect(mongoUri, function (err, db) {
 
                 if (!db) {
-                    console.log("Connection to " + mongoUri + "can't be established!");
+                    console.log('Connection to ' + mongoUri + "can't be established!");
                     callback(err, null);
                     return;
                 }

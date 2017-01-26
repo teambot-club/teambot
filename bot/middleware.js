@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var config = require('config'),
     restrictOnlyOneUser = config.get('restrictOnlyOneUser');
@@ -19,7 +19,7 @@ var Middleware = function () {
         for (var index = 0; index < patterns.length; index++) {
             var pattern = patterns[index];
 
-            var regex = new RegExp("(.*)" + pattern + "(.*)", "i");
+            var regex = new RegExp('(.*)' + pattern + '(.*)', 'i');
             match = message.text.match(regex);
 
             if (match) {

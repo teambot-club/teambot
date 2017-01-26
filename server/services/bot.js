@@ -8,7 +8,7 @@ exports.start = function(req, res) {
 
         if (req.body.clientId && req.body.clientSecret && req.body.redirectUri) {
 
-            settingsProvider.addSettings('slack', { "clientId": req.body.clientId, "clientSecret": req.body.clientSecret, "redirectUri": req.body.redirectUri },
+            settingsProvider.addSettings('slack', { 'clientId': req.body.clientId, 'clientSecret': req.body.clientSecret, 'redirectUri': req.body.redirectUri },
                 function() {
                     console.log(bot);
                     bot.restart(function() {

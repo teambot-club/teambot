@@ -7,8 +7,8 @@
         "eslint:recommended"
     ],
     "rules": {
-        // Override our default settings just for this directory
-        "no-console": 0
+        "no-console": 0,
+        "quotes": [2, "single", "avoid-escape"]
     },
     "globals": {
         "app": true,
