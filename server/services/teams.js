@@ -1,7 +1,7 @@
 var teamsProvider = require('server/providers/teams-provider');
 
-exports.getTeamInfo = function (req, res) {
-    teamsProvider.getTeamInfo(function (err, data) {
+exports.getTeamInfo = function(req, res) {
+    teamsProvider.getTeamInfo(function(err, data) {
         if (err) {
             res.status(500).send(err);
             return;
@@ -15,8 +15,8 @@ exports.getTeamInfo = function (req, res) {
     });
 };
 
-exports.removeTeamInfo = function (req, res) {
-    teamsProvider.removeTeamInfo(function (err, data) {
+exports.removeTeamInfo = function(req, res) {
+    teamsProvider.removeTeamInfo(function(err, data) {
         if (err) {
             res.status(500).send(err);
             return;

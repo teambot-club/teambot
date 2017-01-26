@@ -1,21 +1,19 @@
 <div class="container">
-	<md-content layout-gt-sm="row" layout-align="center" layout-padding style="background-color: #ffffff">
-		<div>
-			<md-input-container layout-gt-sm="row" layout-align="center">
-				<label>Client ID</label>
-				<input ng-model="clientId">
-			</md-input-container>
-			<md-input-container layout-gt-sm="row" layout-align="center">
-				<label>Client Secret</label>
-				<input ng-model="clientSecret">
-			</md-input-container>
-			<br />
-			<md-input-container layout-gt-sm="row" layout-align="center">
-				<a href="#" ng-click="setup()"><img alt="Sign in with Slack" height="40" width="172" src="https://platform.slack-edge.com/img/sign_in_with_slack.png"
-						srcset="https://platform.slack-edge.com/img/sign_in_with_slack.png 1x, https://platform.slack-edge.com/img/sign_in_with_slack@2x.png 2x"
-					/></a>
-			</md-input-container>
-		</div>
-	</md-content>
-	<md-progress-linear md-mode="query" ng-show="isLoading"></md-progress-linear>
+    <md-content layout-gt-sm="row" layout-align="center" layout-padding style="background-color: #ffffff">
+        <div>
+            <md-input-container layout-gt-sm="row" layout-align="center">
+                <label>Client ID</label>
+                <input ng-model="clientId">
+            </md-input-container>
+            <md-input-container layout-gt-sm="row" layout-align="center">
+                <label>Client Secret</label>
+                <input ng-model="clientSecret">
+            </md-input-container>
+            <br />
+            <md-input-container layout-gt-sm="row" layout-align="center">
+                <a href="#" ng-click="setup()"><img alt="Sign in with Slack" height="40" width="172" src="https://platform.slack-edge.com/img/sign_in_with_slack.png" srcset="https://platform.slack-edge.com/img/sign_in_with_slack.png 1x, https://platform.slack-edge.com/img/sign_in_with_slack@2x.png 2x" /></a>
+            </md-input-container>
+        </div>
+    </md-content>
+    <md-progress-linear md-mode="query" ng-show="isLoading"></md-progress-linear>
 </div>

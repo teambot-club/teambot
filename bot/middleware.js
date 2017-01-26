@@ -3,9 +3,9 @@
 var config = require('config'),
     restrictOnlyOneUser = config.get('restrictOnlyOneUser');
 
-var Middleware = function () {
+var Middleware = function() {
 
-    var process = function (patterns, message) {
+    var process = function(patterns, message) {
 
         var bot = require('bot');
         if (restrictOnlyOneUser) {
