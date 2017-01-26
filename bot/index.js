@@ -1,5 +1,6 @@
 var _bots = null,
-    hasOauthServer = false;
+    hasOauthServer = false,
+    _devSkill;
 
 var teambot = function() {
     var Botkit = require('botkit'),
@@ -11,6 +12,12 @@ var teambot = function() {
     require('winston-mongodb').MongoDB;
 
     function start(callback, devSkill) {
+        _devSkill = devSkill;
+
+        process.on('uncaughtException', function(err) {
+            console.error(err, 'Uncaught Exception thrown');
+            restart();
+        });
 
         settingsProvider.getByScope('general', function(err, config) {
             var mongoUri = config.mongoUri,
@@ -209,7 +216,7 @@ var teambot = function() {
             }
             _bots = null;
         }
-        start(callback);
+        start(callback, _devSkill);
     }
 
     return {
