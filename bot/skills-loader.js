@@ -1,4 +1,4 @@
-var SkillsLoader = function () {
+var SkillsLoader = function() {
     var npm = require("npm"),
         fs = require('fs');
 
@@ -7,10 +7,10 @@ var SkillsLoader = function () {
 
         npm.load({
             loaded: false
-        }, function (err, npm) {
+        }, function(err, npm) {
 
             // catch errors
-            npm.commands.install(skillsArr, function (err, data) {
+            npm.commands.install(skillsArr, function(err, data) {
 
                 if (err) {
                     callback(err, null);
@@ -27,7 +27,7 @@ var SkillsLoader = function () {
                 }
             });
 
-            npm.on("log", function (message) {
+            npm.on("log", function(message) {
                 // log the progress of the installation
                 console.log(message);
             });
@@ -48,11 +48,11 @@ var SkillsLoader = function () {
     }
 
     function getSkillShortName(name) {
-            var versionIndex = name.indexOf("@");
-            var shortName = versionIndex !== -1
-                ? name.substring(0, versionIndex)
-                : name;
-            return shortName;
+        var versionIndex = name.indexOf("@");
+        var shortName = versionIndex !== -1 ?
+            name.substring(0, versionIndex) :
+            name;
+        return shortName;
     }
 
     function getKeywords(packageName) {
@@ -72,7 +72,7 @@ var SkillsLoader = function () {
         var skillKeywords = getKeywords(packageName);
 
         try {
-            isSkill = skillKeywords.indexOf('teambot') > -1;
+            isSkill = skillKeywords.indexOf('ecosystem:teambot') > -1;
         } catch (err) {
             console.log(err);
         }
@@ -82,7 +82,7 @@ var SkillsLoader = function () {
 
     function installPredefinedSkills(controller, middleware, devSkill, callback) {
         var localSkills = getSkillsFromPackageFile('bot/package.json');
-        if(devSkill) {
+        if (devSkill) {
             localSkills.push(devSkill);
         }
 
