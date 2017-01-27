@@ -1,15 +1,28 @@
 'use strict';
 
 var config = require('config'),
-    restrictOnlyOneUser = config.get('restrictOnlyOneUser');
+    restrictOnlyOneUser = config.get('restrictOnlyOneUser'),
+    botContext = require('bot/bot-context');
 
 var Middleware = function() {
 
-    var process = function(patterns, message) {
+    function isLocalUser(userId) {
+        var _isLocalUser = false;
 
-        var bot = require('bot');
+        for (var idx = 0; idx < botContext.localUsers.length; idx++) {
+            var user = botContext.localUsers[idx];
+            if (userId == user.id) {
+                _isLocalUser = true;
+                break;
+            }
+        }
+
+        return _isLocalUser;
+    }
+
+    var process = function(patterns, message) {
         if (restrictOnlyOneUser) {
-            if (!bot.isLocalUser(message.user)) {
+            if (!isLocalUser(message.user)) {
                 return;
             }
         }

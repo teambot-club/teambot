@@ -1,17 +1,4 @@
-var bot = require('bot');
-
-function getCurrentBot() {
-    var activeBots = bot.getBots();
-    var currentBot = activeBots[Object.keys(activeBots)[0]];
-
-    return currentBot;
-}
-
-function getCurrentController() {
-    var currentController = bot.getController();
-
-    return currentController;
-}
+var botContext = require('bot/bot-context');
 
 exports.postHook = function postHook(req, res) {
     try {
@@ -27,7 +14,7 @@ exports.postHook = function postHook(req, res) {
     }
 
     try {
-        targetHooksFunction(req.body, getCurrentController(), getCurrentBot(), function(message) {
+        targetHooksFunction(req.body, botContext.controller, botContext.bot, function(message) {
             return res.status(200).send(message || 'OK');
         });
     } catch (ex) {
