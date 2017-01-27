@@ -2,7 +2,6 @@ var express = require('express'),
     botService = require('server/services/bot'),
     settingsService = require('server/services/settings'),
     teamsService = require('server/services/teams'),
-    hookService = require('server/services/hook'),
     skillsService = require('server/services/skills'),
     bodyParser = require('body-parser');
 
@@ -50,12 +49,10 @@ exports.start = function(port) {
 
     server.delete('/team', teamsService.removeTeamInfo);
 
-    server.post('/hooks/:skill', hookService.postHook);
 
     server.get('/skills', skillsService.getPublicSkillsSummary);
 
     server.get('/skills/:skill', skillsService.getPublicSkillInfo);
-
     server.listen(port, function() {
         console.log('Teambot Server started on port: %s ', port);
     });

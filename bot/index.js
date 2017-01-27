@@ -1,15 +1,23 @@
-var _bots = null,
-    hasOauthServer = false,
+var hasOauthServer = false,
+    express = require('express'),
+    botContext = require('bot/bot-context'),
+    hookService = require('server/services/hook'),
+    bodyParser = require('body-parser'),
     _devSkill;
 
 var teambot = function() {
     var Botkit = require('botkit'),
         skillsLoader = require('bot/skills-loader'),
         settingsProvider = require('server/providers/settings-provider'),
-        winston = require('winston'),
-        _localUsers = [],
-        controller = null;
+        winston = require('winston');
+
     require('winston-mongodb').MongoDB;
+
+    function log(message) {
+        if (botContext.controller) {
+            botContext.controller.log(message);
+        }
+    }
 
     function start(callback, devSkill) {
         _devSkill = devSkill;
@@ -23,7 +31,7 @@ var teambot = function() {
             var mongoUri = config.mongoUri,
                 mongoStorage = require('botkit-storage-mongo')({ mongoUri: mongoUri });
 
-            controller = Botkit.slackbot({
+            botContext.controller = Botkit.slackbot({
                 logger: new winston.Logger({
                     levels: winston.config.syslog.levels,
                     transports: [
@@ -42,7 +50,7 @@ var teambot = function() {
 
             var middleware = require('bot/middleware');
 
-            skillsLoader.installPredefinedSkills(controller, middleware, devSkill, function() {
+            skillsLoader.installPredefinedSkills(botContext.controller, middleware, devSkill, function() {
 
                 settingsProvider.getByScope('slack', function(err, config) {
 
@@ -52,10 +60,10 @@ var teambot = function() {
                     }
 
                     // connect the bot to a stream of messages 
-                    if (_bots) {
+                    if (botContext.bot) {
                         return;
                     }
-                    _bots = {};
+
                     startSlackApp(config.clientId, config.clientSecret, config.redirectUri);
 
                     if (callback) {
@@ -70,40 +78,12 @@ var teambot = function() {
 
     }
 
-    function getController() {
-        return controller;
-    }
-
-    function log(message) {
-        if (controller) {
-            controller.log(message);
-        }
-    }
-
-    function getBots() {
-        return _bots;
-    }
-
-    function isLocalUser(userId) {
-        var _isLocalUser = false;
-
-        for (var idx = 0; idx < _localUsers.length; idx++) {
-            var user = _localUsers[idx];
-            if (userId == user.id) {
-                _isLocalUser = true;
-                break;
-            }
-        }
-
-        return _isLocalUser;
-    }
-
     function loadLocalUsers() {
-        controller.storage.users.all(function(err, users) {
+        botContext.controller.storage.users.all(function(err, users) {
             if (err) {
                 return;
             }
-            _localUsers = users;
+            botContext.localUsers = users;
         });
     }
 
@@ -112,16 +92,15 @@ var teambot = function() {
         loadLocalUsers();
 
         if (!hasOauthServer) {
-            controller.configureSlackApp({
+            botContext.controller.configureSlackApp({
                 clientId: clientId,
                 clientSecret: clientSecret,
                 redirectUri: redirectUri,
                 scopes: ['bot']
             });
 
-            controller.setupWebserver(3000, function() {
-                controller.createWebhookEndpoints(controller.webserver);
-                controller.createOauthEndpoints(controller.webserver, function(err, req, res) {
+            botContext.controller.setupWebserver(3000, function() {
+                botContext.controller.createOauthEndpoints(botContext.controller.webserver, function(err, req, res) {
                     if (err) {
                         res.status(500).send(err);
                     } else {
@@ -134,11 +113,23 @@ var teambot = function() {
             });
 
             hasOauthServer = true;
+
+            var hooksServer = express();
+            hooksServer.use(bodyParser.json());
+
+            // slack hooks
+            botContext.controller.createWebhookEndpoints(hooksServer);
+            // external hooks
+            hooksServer.post('/hooks/:skill', hookService.postHook);
+
+            hooksServer.listen(8889, function() {
+                console.log('Hooks Server started on port 8889.');
+            });
         }
 
         function trackBot(bot) {
-            _bots[bot.config.token] = bot;
-            controller.on('interactive_message_callback', function postInteractiveMessage(bot, message) {
+            botContext.bot = bot;
+            botContext.controller.on('interactive_message_callback', function postInteractiveMessage(bot, message) {
                 var callbackParts = message.callback_id.split(':');
                 var skill = callbackParts[0];
                 if (callbackParts.length > 1) {
@@ -158,16 +149,16 @@ var teambot = function() {
                 }
 
                 try {
-                    targetButtonsFunction(buttonsGroup, message, controller, bot);
+                    targetButtonsFunction(buttonsGroup, message, botContext.controller, bot);
                 } catch (ex) {
                     return bot.reply(message, "Invalid callbackId '" + message.callback_id + "'. An exception occurred during button click handling: '" + ex.message + "'");
                 }
             });
         }
 
-        controller.on('create_bot', function(bot, config) {
+        botContext.controller.on('create_bot', function(bot, config) {
 
-            if (_bots && _bots[bot.config.token]) {
+            if (botContext.bot) {
                 // already online! do nothing.
             } else {
                 bot.startRTM(function(err) {
@@ -187,7 +178,7 @@ var teambot = function() {
             }
         });
 
-        controller.storage.teams.all(function(err, teams) {
+        botContext.controller.storage.teams.all(function(err, teams) {
             if (err) {
                 throw new Error(err);
             }
@@ -195,7 +186,7 @@ var teambot = function() {
             // connect all teams with bots up to slack!
             for (var t in teams) {
                 if (teams[t].bot) {
-                    controller.spawn(teams[t]).startRTM(function(err, bot) {
+                    botContext.controller.spawn(teams[t]).startRTM(function(err, bot) {
                         if (err) {
                             log('Error connecting bot to Slack:', err);
                         } else {
@@ -208,24 +199,19 @@ var teambot = function() {
     }
 
     function restart(callback) {
-        if (_bots) {
-            for (var property in _bots) {
-                if (_bots.hasOwnProperty(property)) {
-                    _bots[property].closeRTM();
-                }
-            }
-            _bots = null;
+        if (botContext.bot) {
+            botContext.bot.closeRTM();
+            botContext.bot = null;
+            botContext.controller = null;
+            botContext.localUsers = null;
         }
+
         start(callback, _devSkill);
     }
 
     return {
         start: start,
-        restart: restart,
-        getController: getController,
-        getBots: getBots,
-        isLocalUser: isLocalUser,
-        log: log
+        restart: restart
     };
 
 }();
