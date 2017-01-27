@@ -41,6 +41,6 @@
         "mongodb": "2.2.11",
         "npm": "4.1.1",
         "npm-keyword": "4.2.0",
-        "package-json": "2.4.0"
+        "pkg.json": "2.0.1"
     }
 }
