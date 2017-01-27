@@ -1,28 +1,53 @@
-app.controller('HomeController', ['$scope', '$http', '$location', '$state', '$mdToast', 'configuration',
-    function($scope, $http, $location, $state, $mdToast, configuration) {
+app.controller('HomeController', ['$scope', '$http', '$location', '$state', '$mdToast', 'configuration', '$mdDialog', 'configService', 'loaderService',
+    function($scope, $http, $location, $state, $mdToast, configuration, $mdDialog, configService, loaderService) {
         var botkitUri = configuration.botKitUrl;
-        $scope.isLoading = false;
-
-        if (configuration.isConfigured && !$location.search().config) {
-            $state.go('done');
-        }
+        $scope.isConfigured = configuration.isConfigured;
 
         $scope.setup = function() {
-            $scope.isLoading = true;
+            loaderService.showLoader();
 
             $http({
                 method: 'POST',
                 url: '/startbot',
                 data: { 'clientId': $scope.clientId, 'clientSecret': $scope.clientSecret, 'redirectUri': configuration.redirectUri }
             }).then(function successCallback() {
-                $scope.isLoading = false;
+                loaderService.hideLoader();
                 window.location.href = botkitUri + '/login';
             }, function errorCallback(response) {
                 showNotification(response.data);
-                $scope.isLoading = false;
+                loaderService.hideLoader();
                 console.log(JSON.stringify(response));
             });
         };
+
+        
+        $scope.resetSettings = function() {
+            var confirm = $mdDialog.confirm()
+                .clickOutsideToClose(true)
+                .title('Reset Teambot settings?')
+                .textContent('All data will be lost.')
+                .ariaLabel('Lucky day')
+                .ok('Confirm')
+                .cancel('Cancel');
+
+            $mdDialog.show(confirm).then(function() {
+                loaderService.showLoader();
+                configService.removeConfig()
+                    .then(function() {
+                        loaderService.hideLoader();
+                        $state.reload();
+                    });
+            }, function() {
+                // handle cancel click here
+            });
+        }
+
+        $scope.config = {
+            teamName: configuration.team.teamName,
+            teamUrl: configuration.team.teamUrl,
+            clientId: configuration.slack.clientId,
+            clientSecret: configuration.slack.clientSecret
+        }
 
         function showNotification(message) {
             $mdToast.show(
