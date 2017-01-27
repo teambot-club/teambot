@@ -1,5 +1,6 @@
-var SkillsLoader = function() {
+var SkillsLoader = function () {
     var npm = require('npm'),
+        skillsProvider = require('../server/providers/skills-provider'),
         fs = require('fs');
 
 
@@ -7,10 +8,10 @@ var SkillsLoader = function() {
 
         npm.load({
             loaded: false
-        }, function(err, npm) {
+        }, function (err, npm) {
 
             // catch errors
-            npm.commands.install(skillsArr, function(err, data) {
+            npm.commands.install(skillsArr, function (err, data) {
 
                 if (err) {
                     callback(err, null);
@@ -27,7 +28,7 @@ var SkillsLoader = function() {
                 }
             });
 
-            npm.on('log', function(message) {
+            npm.on('log', function (message) {
                 // log the progress of the installation
                 console.log(message);
             });
@@ -81,30 +82,35 @@ var SkillsLoader = function() {
     }
 
     function installPredefinedSkills(controller, middleware, skill, callback) {
-        var localSkills = getSkillsFromPackageFile('bot/package.json');
-        if (skill) {
-            localSkills.push(skill);
-        }
+        var localSkills = getdefaultSkills();
 
-        this.install(controller, middleware, localSkills, callback);
+        skillsProvider.getSkills(function (err, installedSkills) {
+            if (err) {
+                console.log(err);
+                return;
+            }
+
+            if (devSkill) {
+                localSkills.push(devSkill);
+            }
+
+            installedSkills.forEach(function (skill) {
+                localSkills.push(skill.name);
+            });
+            install(controller, middleware, localSkills, callback);
+        });
     }
 
-    function getSkillsFromPackageFile(packageFilePath) {
-
-        var p = require(packageFilePath);
-        if (!p.dependencies) return [];
-
-        var deps = [];
-        for (var mod in p.dependencies) {
-            deps.push(mod + '@' + p.dependencies[mod]);
-        }
-        return deps;
+    function getdefaultSkills() {
+        return [
+            'teambot-hello@https://github.com/teambot-club/teambot-hello'
+        ]
     }
 
     return {
         install: install,
         installPredefinedSkills: installPredefinedSkills
     };
-}();
+} ();
 
 module.exports = SkillsLoader;

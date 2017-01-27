@@ -1,6 +1,7 @@
 var bot = require('bot'),
     githubUrlParser = require('parse-github-url'),
     githubUrl = "https://github.com",
+    skillsProvider = require('server/providers/skills-provider'),
     settingsProvider = require('server/providers/settings-provider');
 
 
@@ -63,6 +64,8 @@ exports.installSkill = function (req, res) {
                 if (err) {
                     res.status(400).send(err);
                 }
+
+                skillsProvider.addSkill(skillName);
                 res.status(200).send('OK');
             });
         } else {

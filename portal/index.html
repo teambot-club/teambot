@@ -22,10 +22,7 @@
         <img layout-align="center" src="img/teambot.png" style="width: 300px; height: 300px;" alt="Teambot">
     </md-content>
 
-	<md-tabs>
-		<md-tab label="Home" ui-sref="home"></md-tab>  
-		<md-tab label="Skills" ui-sref="skills"></md-tab>
-	</md-tabs>
+	<navigation></navigation>
     <div id="uiview" ui-view></div>
     <script src="js/jquery/dist/jquery.js"></script>
     <script src="js/angular/angular.js"></script>
@@ -43,6 +40,7 @@
     <script src="controllers/home.js"></script>
     <script src="controllers/done.js"></script>
 	<script src="controllers/skills.js"></script>
+    <script src="directives/navigation/navigation.js"></script>
     <script src="routes.js"></script>
 </body>
 
