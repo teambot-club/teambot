@@ -42,5 +42,9 @@
         "npm": "4.1.1",
         "npm-keyword": "4.2.0",
         "pkg.json": "2.0.1"
+    },
+    "devDependencies": {
+        "jasmine-node": "1.14.5"
     }
+
 }
