@@ -30,10 +30,9 @@ var SkillsProvider = function () {
         }
     }
 
-    function removeSkills(skillName, callback) {
+    function removeSkill(skillName, callback) {
         try {
             dataProvider.remove({ 'name': skillName }, skillsCollectionName, callback);
-
         } catch (err) {
             callback(err);
         }
@@ -42,7 +41,7 @@ var SkillsProvider = function () {
     return {
         getSkills: getSkills,
         addSkill: addSkill,
-        removeSkills: removeSkills
+        removeSkill: removeSkill
     };
 } ();
 

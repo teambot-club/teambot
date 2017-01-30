@@ -3,8 +3,10 @@ app.directive('navigation', function () {
         restrict: 'E',
         templateUrl: 'directives/navigation/navigation.html',
         controller: function ($scope, $state) {
-            $scope.getCurrentNavItem = function () {
-                return $state && $state.current && $state.current.name;
+            $scope.currentNavItem = $state.current.name || 'home';
+            
+            $scope.goto = function (name) {
+                $state.go(name);
             }
         }
     };

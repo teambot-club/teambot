@@ -9,8 +9,8 @@ var teambot = function() {
     var Botkit = require('botkit'),
         skillsLoader = require('bot/skills-loader'),
         settingsProvider = require('server/providers/settings-provider'),
-        winston = require('winston');
-        middleware = require('bot/middleware'),
+        winston = require('winston'),
+        middleware = require('bot/middleware');
     require('winston-mongodb').MongoDB;
 
     function log(message) {
@@ -212,12 +212,12 @@ var teambot = function() {
     }
 
     function installSkill(skillName, callback) {
-        skillsLoader.install(controller, middleware, skillName, callback);
+        skillsLoader.install(botContext.controller, middleware, skillName, callback);
     }
 
     return {
         start: start,
-        restart: restart
+        restart: restart,
         log: log,
         installSkill: installSkill
     };
