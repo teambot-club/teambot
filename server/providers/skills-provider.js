@@ -18,11 +18,8 @@ var SkillsProvider = function () {
         }
     }
 
-    function addSkill(skillName, callback) {
+    function addSkill(skill, callback) {
         try {
-            var skill = {
-                name: skillName
-            }
             dataProvider.insert(skill, skillsCollectionName, callback);
 
         } catch (err) {

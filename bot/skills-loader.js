@@ -95,7 +95,7 @@ var SkillsLoader = function () {
             }
 
             installedSkills.forEach(function (skill) {
-                localSkills.push(skill.name);
+                localSkills.push(skill.source);
             });
             install(controller, middleware, localSkills, callback);
         });

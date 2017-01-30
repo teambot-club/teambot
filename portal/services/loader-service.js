@@ -29,6 +29,6 @@
             showLoader: showLoader,
             hideLoader: hideLoader
         }
-    };
+    }
 
 } ());
