@@ -1,7 +1,7 @@
-<md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
+<md-nav-bar md-selected-nav-item="uiState.current.name" nav-bar-aria-label="navigation links">
     <span>
         <img layout-align="center" src="img/teambot.png" style="width: 50px; height: auto; padding-left:30%;" alt="Teambot">
     </span>
-    <md-nav-item md-nav-click="goto('home')" name="home">Home</md-nav-item>
-    <md-nav-item md-nav-click="goto('skills')" name="skills">Skills</md-nav-item>
+    <md-nav-item md-nav-sref="home" name="home">Home</md-nav-item>
+    <md-nav-item md-nav-sref="skills" name="skills">Skills</md-nav-item>
 </md-nav-bar>
