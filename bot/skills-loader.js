@@ -1,6 +1,6 @@
 var SkillsLoader = function () {
     var npm = require('npm'),
-        skillsProvider = require('../server/providers/skills-provider'),
+        skillsProvider = require('server/providers/skills-provider'),
         fs = require('fs');
 
 
@@ -89,8 +89,8 @@ var SkillsLoader = function () {
                     return;
                 }
 
-                if (devSkill) {
-                    installedSkills.push(devSkill);
+                if (skill) {
+                    installedSkills.push(skill);
                 }
 
                 installedSkills = installedSkills.map(function (skill) {

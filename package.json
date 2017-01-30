@@ -23,6 +23,7 @@
     },
     "homepage": "http://teambot.club",
     "dependencies": {
+        "async": "2.1.4",
         "botkit": "0.4.9",
         "botkit-storage-mongo": "1.0.4",
         "config": "1.21.0",
@@ -35,7 +36,7 @@
         "jsonfile": "2.4.0",
         "winston": "2.2.0",
         "winston-mongodb": "1.6.4",
-        "parse-github-url": "^1.0.0",
+        "parse-github-url": "1.0.0",
         "body-parser": "1.15.2",
         "open": "0.0.5",
         "app-module-path": "2.1.0",

@@ -26,7 +26,6 @@ app.controller('HomeController', ['$scope', '$http', '$location', '$state', '$md
                 .clickOutsideToClose(true)
                 .title('Reset Teambot settings?')
                 .textContent('All data will be lost.')
-                .ariaLabel('Lucky day')
                 .ok('Confirm')
                 .cancel('Cancel');
 

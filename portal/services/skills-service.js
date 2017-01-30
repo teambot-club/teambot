@@ -5,7 +5,7 @@ app.factory('skillsService', ['httpService', 'constants', function (httpService,
             skillName: skillName
         };
 
-        return httpService.executeRequest(constants.httpMethods.post, '/install-skill', data);
+        return httpService.executeRequest(constants.httpMethods.post, '/skills', data);
     }
 
     function getSkills() {

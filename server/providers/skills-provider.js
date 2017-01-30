@@ -1,4 +1,5 @@
 var dataProvider = require('server/providers/data-provider'),
+    async = require('async'),
     skillsCollectionName = 'skills';
 
 var SkillsProvider = function () {
@@ -9,7 +10,7 @@ var SkillsProvider = function () {
                     callback(err);
                     return;
                 }
-                
+
                 callback(null, data);
             });
 
@@ -37,12 +38,12 @@ var SkillsProvider = function () {
 
     function upsertSkills(skills, callback) {
         try {
-            skills.forEach(function (skill) {
-                dataProvider.update({name: skill.name}, skill, skillsCollectionName, function () {
-                });
+            async.forEach(skills, function (skill, callback) {
+                dataProvider.update({name: skill.name}, skill, skillsCollectionName, callback)
+            }, function (err) {
+                console.log(err);
+                callback();
             });
-
-            callback();
         } catch (err) {
             callback(err);
         }
