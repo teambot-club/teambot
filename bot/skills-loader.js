@@ -102,9 +102,14 @@ var SkillsLoader = function () {
     }
 
     function getdefaultSkills() {
-        return [
-            'teambot-hello@https://github.com/teambot-club/teambot-hello'
-        ]
+        var defaultSkills = require('bot/default-skills.json');
+        if (!defaultSkills) {
+            return [];
+        }
+
+        return defaultSkills.map(function (skill) {
+            return skill.source;
+        });
     }
 
     return {
