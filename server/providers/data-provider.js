@@ -1,13 +1,28 @@
 var dbClient = require('mongodb').MongoClient,
-    config = require('config');
+    mongoUri = null;
 
 var DataProvider = function() {
 
-    var mongoUri = config.get('mongoUri');
+    function init(_mongoUri) {
+        if (!mongoUri) {
+            mongoUri = _mongoUri;
+        } else {
+            console.error('Data provider is already initialized');
+        }
+
+    }
+
+    function connect(mongoUri, callback) {
+        if (!mongoUri) {
+            console.error('Data provider is NOT initialized');
+        }
+        dbClient.connect(mongoUri, callback);
+    }
 
     function get(selector, collectionName, callback) {
+
         try {
-            dbClient.connect(mongoUri, function(err, db) {
+            connect(mongoUri, function(err, db) {
 
                 if (!db) {
                     console.log('Connection to ' + mongoUri + "can't be established!");
@@ -29,7 +44,7 @@ var DataProvider = function() {
 
     function insert(document, collectionName, callback) {
         try {
-            dbClient.connect(mongoUri, function(err, db) {
+            connect(mongoUri, function(err, db) {
 
                 if (!db) {
                     console.log('Connection to ' + mongoUri + "can't be established!");
@@ -57,7 +72,7 @@ var DataProvider = function() {
     function remove(selector, collectionName, callback) {
         try {
 
-            dbClient.connect(mongoUri, function(err, db) {
+            connect(mongoUri, function(err, db) {
 
                 if (!db) {
                     console.log('Connection to ' + mongoUri + "can't be established!");
@@ -80,7 +95,7 @@ var DataProvider = function() {
     function update(selector, document, collectionName, callback) {
         try {
 
-            dbClient.connect(mongoUri, function(err, db) {
+            connect(mongoUri, function(err, db) {
 
                 if (!db) {
                     console.log('Connection to ' + mongoUri + "can't be established!");
@@ -104,6 +119,7 @@ var DataProvider = function() {
     }
 
     return {
+        init: init,
         get: get,
         insert: insert,
         remove: remove,

@@ -3,7 +3,7 @@ var hasOauthServer = false,
     botContext = require('bot/bot-context'),
     hookService = require('server/services/hook'),
     bodyParser = require('body-parser'),
-    _devSkill;
+    _skill;
 
 var teambot = function() {
     var Botkit = require('botkit'),
@@ -19,8 +19,8 @@ var teambot = function() {
         }
     }
 
-    function start(callback, devSkill) {
-        _devSkill = devSkill;
+    function start(callback, skill) {
+        _skill = skill;
 
         process.on('uncaughtException', function(err) {
             console.error(err, 'Uncaught Exception thrown');
@@ -28,7 +28,7 @@ var teambot = function() {
         });
 
         settingsProvider.getByScope('general', function(err, config) {
-            var mongoUri = config.mongoUri,
+            var mongoUri = config.mongo,
                 mongoStorage = require('botkit-storage-mongo')({ mongoUri: mongoUri });
 
             botContext.controller = Botkit.slackbot({
@@ -43,14 +43,14 @@ var teambot = function() {
                 interactive_replies: true,
                 debug: false,
                 storage: mongoStorage,
-                log: config.log.enabled,
-                logLevel: config.log.level
+                log: config.logging,
+                logLevel: config.verbose
 
             });
 
             var middleware = require('bot/middleware');
 
-            skillsLoader.installPredefinedSkills(botContext.controller, middleware, devSkill, function() {
+            skillsLoader.installPredefinedSkills(botContext.controller, middleware, skill, function() {
 
                 settingsProvider.getByScope('slack', function(err, config) {
 
@@ -99,31 +99,35 @@ var teambot = function() {
                 scopes: ['bot']
             });
 
-            botContext.controller.setupWebserver(3000, function() {
-                botContext.controller.createOauthEndpoints(botContext.controller.webserver, function(err, req, res) {
-                    if (err) {
-                        res.status(500).send(err);
-                    } else {
-                        settingsProvider.getByScope('general', function(err, config) {
-                            loadLocalUsers();
-                            res.redirect(req.protocol + '://' + req.hostname + ':' + config.server.port + '/#/done');
-                        });
-                    }
+            settingsProvider.getByScope('general', function(err, config) {
+
+                botContext.controller.setupWebserver(config.botkit, function() {
+                    botContext.controller.createOauthEndpoints(botContext.controller.webserver, function(err, req, res) {
+                        if (err) {
+                            res.status(500).send(err);
+                        } else {
+                            settingsProvider.getByScope('general', function(err, config) {
+                                loadLocalUsers();
+                                res.redirect(req.protocol + '://' + req.hostname + ':' + config.server + '/#/done');
+                            });
+                        }
+                    });
                 });
-            });
 
-            hasOauthServer = true;
+                hasOauthServer = true;
 
-            var hooksServer = express();
-            hooksServer.use(bodyParser.json());
+                var hooksServer = express();
+                hooksServer.use(bodyParser.json());
 
-            // slack hooks
-            botContext.controller.createWebhookEndpoints(hooksServer);
-            // external hooks
-            hooksServer.post('/hooks/:skill', hookService.postHook);
+                // slack hooks
+                botContext.controller.createWebhookEndpoints(hooksServer);
+                // external hooks
+                hooksServer.post('/hooks/:skill', hookService.postHook);
 
-            hooksServer.listen(8889, function() {
-                console.log('Hooks Server started on port 8889.');
+                hooksServer.listen(config.hooks, function() {
+                    console.log('Hooks Server started on port ' + config.hooks);
+                });
+
             });
         }
 
@@ -206,7 +210,7 @@ var teambot = function() {
             botContext.localUsers = null;
         }
 
-        start(callback, _devSkill);
+        start(callback, _skill);
     }
 
     return {

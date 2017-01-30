@@ -80,10 +80,10 @@ var SkillsLoader = function() {
         return isSkill;
     }
 
-    function installPredefinedSkills(controller, middleware, devSkill, callback) {
+    function installPredefinedSkills(controller, middleware, skill, callback) {
         var localSkills = getSkillsFromPackageFile('bot/package.json');
-        if (devSkill) {
-            localSkills.push(devSkill);
+        if (skill) {
+            localSkills.push(skill);
         }
 
         this.install(controller, middleware, localSkills, callback);
