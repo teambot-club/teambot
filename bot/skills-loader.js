@@ -82,34 +82,39 @@ var SkillsLoader = function () {
     }
 
     function installPredefinedSkills(controller, middleware, skill, callback) {
-        var localSkills = getdefaultSkills();
+        ensureDefaultSkills(function () {
+            skillsProvider.getSkills(function (err, installedSkills) {
+                if (err) {
+                    console.log(err);
+                    return;
+                }
 
-        skillsProvider.getSkills(function (err, installedSkills) {
-            if (err) {
-                console.log(err);
-                return;
-            }
+                if (devSkill) {
+                    installedSkills.push(devSkill);
+                }
 
-            if (devSkill) {
-                localSkills.push(devSkill);
-            }
-
-            installedSkills.forEach(function (skill) {
-                localSkills.push(skill.source);
+                installedSkills = installedSkills.map(function (skill) {
+                    return skill.source;
+                });
+                install(controller, middleware, installedSkills, callback);
             });
-            install(controller, middleware, localSkills, callback);
         });
     }
 
-    function getdefaultSkills() {
-        var defaultSkills = require('bot/default-skills.json');
-        if (!defaultSkills) {
-            return [];
-        }
+    function ensureDefaultSkills(callback) {
+        try {
+            var defaultSkills = require('bot/default-skills.json');
+            if (!defaultSkills) {
+                return callback();
+            }
 
-        return defaultSkills.map(function (skill) {
-            return skill.source;
-        });
+            skillsProvider.upsertSkills(defaultSkills, function () {
+                callback();
+            });
+        } catch (err) {
+            console.log(err);
+            callback();
+        }
     }
 
     return {

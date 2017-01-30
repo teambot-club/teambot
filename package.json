@@ -35,6 +35,7 @@
         "jsonfile": "2.4.0",
         "winston": "2.2.0",
         "winston-mongodb": "1.6.4",
+        "parse-github-url": "^1.0.0",
         "body-parser": "1.15.2",
         "open": "0.0.5",
         "app-module-path": "2.1.0",

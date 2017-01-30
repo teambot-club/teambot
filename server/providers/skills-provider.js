@@ -35,10 +35,24 @@ var SkillsProvider = function () {
         }
     }
 
+    function upsertSkills(skills, callback) {
+        try {
+            skills.forEach(function (skill) {
+                dataProvider.update({name: skill.name}, skill, skillsCollectionName, function () {
+                });
+            });
+
+            callback();
+        } catch (err) {
+            callback(err);
+        }
+    }
+
     return {
         getSkills: getSkills,
         addSkill: addSkill,
-        removeSkill: removeSkill
+        removeSkill: removeSkill,
+        upsertSkills: upsertSkills
     };
 } ();
 
