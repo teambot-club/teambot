@@ -1,4 +1,5 @@
 module.exports = {
     bot: null,
-    controller: null
+    controller: null,
+    development: null
 };
