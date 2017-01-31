@@ -1,8 +1,6 @@
 'use strict';
 
-var config = require('config'),
-    restrictOnlyOneUser = config.get('restrictOnlyOneUser'),
-    botContext = require('bot/bot-context');
+var botContext = require('bot/bot-context');
 
 var Middleware = function() {
 
@@ -21,7 +19,8 @@ var Middleware = function() {
     }
 
     var process = function(patterns, message) {
-        if (restrictOnlyOneUser) {
+
+        if (botContext.development) {
             if (!isLocalUser(message.user)) {
                 return;
             }

@@ -53,11 +53,27 @@ Each Slack App has Client ID and Client Secret. The following Client ID and Clie
 
 Command line arguments can be passed to Teambot:
 
-`node teambot.js -[argument_name] [argument_value]`
+`node teambot.js --[argument_name] [argument_value]`
 
-Argument      | Description                                                                                                                                                     | Usage
---------------| -----------                                                                                                                                                     | ------------
-skill         | Load skill in Teambot. Usefull for skills development. The value should be `[skill-name]@[file:local_skill_path]` or `[skill-name]@[github_url]`     | `node teambot.js -skill "skill-name@file:./path/to/your/skill"` or `node teambot.js -skill "skill-name@https://github.com/skill-repo-name"`
+Argument          | Description                                            | Type        | Default                                                                                                                                                    
+--------------    | -----------                                            | --------    | --------                                                                                                                                     
+--server, -p      | Web Configuration portal port                          | String      | 8888
+--hooks, -h       | Slack hooks port                                       | String      | 8889
+--botkit, -b      | Botkit port                                            | String      | 3000
+--mongo, -m       | Mongo Uri                                              | String      | mongodb://127.0.0.1:27017
+--logging, -l     | Enable logging                                         | Boolean     | true 
+--verbose, -v     | Verbose level from 0 to 7                              | Number      | 0
+--development, -d | true - development mode, false - production mode       | Boolean     | true
+--skill, -s       | Load skill in Teambot. Usefull for skills development. |             | 
+
+#### --skill (-s)
+
+- node teambot.js --skill `[skill-name]@[npm_version]`
+- node teambot.js --skill `[skill-name]@[github_url]`
+- node teambot.js --skill `[skill-name]@[file:local_skill_path]`
+
+#### --development (-d) mode
+This flag enables Teambot contributors to share same Slack Bot User to test Teambot locally. In this way the local Teambot respect only messages from the only user in local database (your Slack user) and skip the others.        
 
 
 ### Middleware
@@ -79,39 +95,3 @@ The above example will handle the message 'Number of fixed high bugs', 'Could yo
 
 The middleware also support definition of complex patterns. What the complex pattern means?
 If 'hello' is a pattern, 'hello|hi' is a complex pattern. So the complex pattern represents several patterns separated by |. The complex pattern is treated as found if one of its patterns is found. 
-
-### Configuration
-
-There are 2 supported configurations:
-- default: configuration that is used if something else is not specified (Local development)
-- production: configuration that is used if NODE_ENV=production
-
-```
-{
-    "server": {
-        "port": "8888"
-    },
-    "botkit": {
-        "port": "3000" 
-    },
-    "mongoUri": "mongodb://127.0.0.1:27017",
-    "restrictOnlyOneUser": true,
-    "log": {
-        "enabled": true,
-        "level": 0 
-    }
-}
-```
-
-Property            | Description                                                                                                             
---------------      | -----------                                                                                                             
-server.port         | Express server port [default: 8888]
-botkit.port         | Botkit port [default: 3000]
-mongoUri            | MongoDB connection string [default: local machine default port (27017)]
-restrictOnlyOneUser | Flag that enable/disable local development [default: true]. _More info provided below_
-log.enabled         | Enable/Disable logging [default: true]
-log.level           | Integer from 0 to 7 to adjust logging verbosity
-
-#### restrictOnlyOneUser
-This flag enables Teambot contributors to share same Slack Bot User to test Teambot locally. In this way the local Teambot respect only messages from the only user in local database (your Slack user) and skip the others.        
-
