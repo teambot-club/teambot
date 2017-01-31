@@ -26,6 +26,10 @@ app.factory('configService', ['httpService', 'constants', function(httpService, 
                 .then(function() {
                     return httpService.executeRequest(constants.httpMethods.delete, '/team');
                 });
+        },
+
+        updateSlackConfiguration: function (slackConfig) {
+            return httpService.executeRequest(constants.httpMethods.put, '/settings/slack', slackConfig);
         }
     };
 }]);
