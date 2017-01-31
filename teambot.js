@@ -51,10 +51,10 @@ var optionDefinitions = [{
         type: String
     },
     {
-        name: 'development',
-        alias: 'd',
+        name: 'production',
+        alias: 'r',
         type: Boolean,
-        defaultValue: true
+        defaultValue: false
     }
 
 ]

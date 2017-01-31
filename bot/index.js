@@ -35,7 +35,7 @@ var teambot = function() {
                 logger: new winston.Logger({
                     levels: winston.config.syslog.levels,
                     transports: [
-                        process.env.NODE_ENV == 'production' ?
+                        botContext.production ?
                         new(winston.transports.MongoDB)({ 'db': mongoUri + '/admin' }) :
                         new(winston.transports.Console)()
                     ]

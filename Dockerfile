@@ -6,4 +6,4 @@ RUN apt-get update \
     && apt-get install -y libstdc++-4.9-dev
 RUN npm install bower -g
 RUN npm install --unsafe-perm
-CMD node teambot.js --mongo mongodb://mongo:27017 --development false
+CMD node teambot.js --mongo mongodb://mongo:27017

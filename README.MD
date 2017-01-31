@@ -63,7 +63,7 @@ Argument          | Description                                            | Typ
 --mongo, -m       | Mongo Uri                                              | String      | mongodb://127.0.0.1:27017
 --logging, -l     | Enable logging                                         | Boolean     | true 
 --verbose, -v     | Verbose level from 0 to 7                              | Number      | 0
---development, -d | true - development mode, false - production mode       | Boolean     | true
+--production, -r | true - production mode, false - development mode        | Boolean     | false
 --skill, -s       | Load skill in Teambot. Usefull for skills development. |             | 
 
 #### --skill (-s)
