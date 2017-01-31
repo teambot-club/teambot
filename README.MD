@@ -72,7 +72,7 @@ Argument          | Description                                            | Typ
 - node teambot.js --skill `[skill-name]@[github_url]`
 - node teambot.js --skill `[skill-name]@[file:local_skill_path]`
 
-#### --development (-d) mode
+#### --production (-r) mode
 This flag enables Teambot contributors to share same Slack Bot User to test Teambot locally. In this way the local Teambot respect only messages from the only user in local database (your Slack user) and skip the others.        
 
 

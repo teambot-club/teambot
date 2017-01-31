@@ -20,7 +20,7 @@ var Middleware = function() {
 
     var process = function(patterns, message) {
 
-        if (botContext.production) {
+        if (!botContext.production) {
             if (!isLocalUser(message.user)) {
                 return;
             }

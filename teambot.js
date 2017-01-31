@@ -60,7 +60,7 @@ var optionDefinitions = [{
 ]
 
 var options = commandLineArgs(optionDefinitions)
-botContext.development = options.development;
+botContext.production = options.production;
 
 dataProvider.init(options.mongo);
 
