@@ -1,4 +1,4 @@
-app.factory('httpService', ['$http', 'constants', function($http, constants) {
+app.factory('httpService', ['$http', 'constants', function ($http, constants) {
     function handleSuccess(result) {
         return {
             success: true,

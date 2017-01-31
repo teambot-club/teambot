@@ -94,7 +94,6 @@ var DataProvider = function() {
 
     function update(selector, document, collectionName, callback) {
         try {
-
             connect(mongoUri, function(err, db) {
 
                 if (!db) {

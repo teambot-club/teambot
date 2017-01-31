@@ -18,6 +18,11 @@ app
                         configuration: resolveConfiguration
                     }
                 })
+                .state('skills', {
+                    url: '/skills',
+                    templateUrl: 'views/skills.html',
+                    controller: 'SkillsController'
+                })
                 .state('done', {
                     url: '/done',
                     templateUrl: 'views/done.html',

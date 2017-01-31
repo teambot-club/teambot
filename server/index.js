@@ -49,10 +49,12 @@ exports.start = function(port) {
 
     server.delete('/team', teamsService.removeTeamInfo);
 
+    server.post('/skills', botService.installSkill);
 
     server.get('/skills', skillsService.getPublicSkillsSummary);
 
     server.get('/skills/:skill', skillsService.getPublicSkillInfo);
+    
     server.listen(port, function() {
         console.log('Teambot Server started on port: %s ', port);
     });
