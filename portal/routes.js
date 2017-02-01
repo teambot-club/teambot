@@ -22,14 +22,6 @@ app
                     url: '/skills',
                     templateUrl: 'views/skills.html',
                     controller: 'SkillsController'
-                })
-                .state('done', {
-                    url: '/done',
-                    templateUrl: 'views/done.html',
-                    controller: 'DoneController',
-                    resolve: {
-                        configuration: resolveConfiguration
-                    }
                 });
         }
     ]);
