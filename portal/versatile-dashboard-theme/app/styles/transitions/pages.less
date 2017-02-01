@@ -1,0 +1,48 @@
+/* Have to set height explicity on ui-view 
+to prevent collapsing during animation*/
+/*.well[ui-view]{
+ height: 65px; 
+}*/
+
+[ui-view] {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+}
+
+.ui-view-container {
+  position: relative;
+}
+
+
+
+[ui-view].ng-leave        {
+    -webkit-animation: scaleDown .7s ease both;
+    animation: scaleDown .7s ease both;
+}
+[ui-view].ng-enter    {  
+  -webkit-animation: moveFromBottom .9s ease both;
+  animation: moveFromBottom .9s ease both;
+}
+
+
+
+@-webkit-keyframes scaleDown {
+  from { }
+  to { opacity: 0; -webkit-transform: scale(.8); }
+}
+@keyframes scaleDown {
+  from { }
+  to { opacity: 0; -webkit-transform: scale(.8); transform: scale(.8); }
+}
+
+@-webkit-keyframes moveFromLeft {
+  from { }
+  to { -webkit-transform: translateX(-100%); }
+}
+@keyframes moveFromLeft {
+  from { }
+  to { -webkit-transform: translateX(-100%); transform: translateX(-100%); }
+}

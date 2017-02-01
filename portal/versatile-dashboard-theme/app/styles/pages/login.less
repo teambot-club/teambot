@@ -1,0 +1,247 @@
+.login-page {
+	overflow: auto;
+	display: table;
+	width: 100%;
+	height: 100%;
+    background: @brand-primary;
+	color: #fff;
+	padding: 3em;
+	position: relative;
+	&:before {
+		content: '';
+		background-color: rgba(255,255,255,0.15);
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		width: 40%;
+		border-right: solid 120px @brand-primary;
+	}
+
+	h1 {
+		font-weight: 700;
+		line-height: 32px;
+		font-size: 34px;
+		span {
+			font-size: 27px;
+		}
+		small {
+			color: #FFFFFF;
+			opacity: 0.7;
+			padding-right: 5px;
+			font-size: 16px;
+		  	display: block;
+		 	margin-top: 8px;
+		}
+	}
+
+	.form-group {
+		padding: 8px 0;
+		margin-bottom: 0;
+	}
+
+	.form-content {
+		padding: 40px 0;
+	}
+	.user-avatar {
+		max-width: 230px;
+		width: 100%;
+		border: 3px solid white;
+	}
+	.img-container, .form-content {
+		display: table-cell;
+		vertical-align: middle;
+		padding: 15px;
+	}
+	.img-container {
+		text-align: right;
+		width: 40%;
+		position: relative;
+		
+	}
+	.form-content {
+		position: relative;
+		.pro-link {
+			a {
+				color: white;
+				position: absolute;
+				right: 0;
+				top: 0;
+				font-weight: 600;
+				&:hover {
+					text-decoration: none;
+				}
+			}
+		}
+		.table-form {
+			display: table;
+			width: 100%;
+			.form-groups, .button-container {
+				display: table-cell;
+				vertical-align: middle;
+			}
+			.button-container {
+				width: 100px;
+			}
+		}	
+		.bottom-75 {
+			margin-bottom: 75px;
+			max-width: 400px;
+		}
+		.input-lg {
+			border-radius: 0;
+		}
+		.form-control {
+			background: darken(@brand-primary, 3%);
+			border-color: darken(@brand-primary, 3%);
+			box-shadow: none;
+			color: white;
+			font-weight: 600;
+		}
+		::-webkit-input-placeholder {
+		   color: rgba(255,255,255,0.7);
+		   font-weight: 700;
+		   font-size: 16px;
+		   padding-top: 2px;
+		}
+
+		:-moz-placeholder { /* Firefox 18- */
+		   color: rgba(255,255,255,0.7);
+		   font-weight: 700;
+		   font-size: 16px;
+		   padding-top: 2px;  
+		}
+
+		::-moz-placeholder {  /* Firefox 19+ */
+		   color: rgba(255,255,255,0.7);
+		   font-weight: 700;
+		   font-size: 16px;
+		   padding-top: 2px;  
+		}
+
+		:-ms-input-placeholder {  
+		   color: rgba(255,255,255,0.7);
+		   font-weight: 700;
+		   font-size: 16px;
+		   padding-top: 2px;  
+		}
+		.login {
+			height: 110px;
+			width: 100px;
+			border-radius: 0;
+			background: orange;
+			border-color: orange;
+			box-shadow: none;
+			margin-left: 15px;
+			color: white;
+			&:focus {
+				outline: none;
+				outline-offset: none;
+			}
+		}
+	}
+	.remember {
+		margin-top: 8px;
+		.checkbox1 {
+			padding-right: 5px;
+		}
+		span.pass {
+			float: right;
+			padding-top: 2px;
+		}
+	}
+}
+
+.user-avatar2 {
+	width: 120px;
+	border: 2px solid white;
+	margin-bottom: 5px;
+}
+.login2 {
+	height: 38px;
+	border-radius: 0;
+	width: 46px;
+	margin-right: 12px;
+	background: orange;
+	border-color: orange;
+	box-shadow: none;
+	color: white;
+	&:focus {
+		outline: none;
+		outline-offset: none;
+	}
+	&:hover {
+		color: orange;
+		background: white;
+		border-color: white;
+	}
+}
+
+@media (max-width: 768px) {
+	.login-page {
+		&:before {
+			content: '';
+			background-color: rgba(255,255,255,0.15);
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			// bottom: 0;
+			width: 100%;
+			border-right:none;
+		}
+	}
+	.login-page, .img-content, .form-content {
+		display: block !important;
+	}
+	.img-container {
+		.pull-right {
+			float: none !important; 
+		}
+		.img-responsive {
+			display: initial;
+		}
+	}
+	.form-content {
+		
+		.remember {			
+			width: 100% !important;
+		}
+	}
+	.pro-link {
+		display: none !important;
+	}
+	.login-page .form-content .bottom-75 {
+		margin: 0 auto;
+	}
+	.login-page {
+		padding: 15px;
+	}
+	.login-page .img-container {
+		display: block;
+		width: 100%;
+	}
+}
+
+@media (max-width: 400px) {
+	.login-page .form-content .table-form {
+		display: block;
+		.form-groups, .button-container {
+			display: block;
+			width: 100%;
+			.login {
+				width: 100%;
+				height: 46px;
+				margin: 8px 0 0 0;
+				img {
+					max-width: 26px;
+				}
+			}
+		}
+	}
+	.login-page .user-avatar {
+		max-width: 200px;
+	}
+}
+

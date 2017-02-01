@@ -1,0 +1,188 @@
+.dashboard-page {
+
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+
+    background: @brand-primary;
+    color: white;
+
+    /*
+     * Base structure
+     */
+
+
+    /*
+     * Global add-ons
+     */
+
+     .sub-header {
+      padding-bottom: 10px;
+      border-bottom: 1px solid #eee;
+  }
+
+    /*
+     * Top navigation
+     * Hide default border to remove 1px line.
+     */
+     .navbar-fixed-top {
+      border: 0;
+  }
+
+  
+  h2 {
+   font-weight: 300;
+   small {
+    color: #fff;
+}
+}
+
+
+    /*
+     * Main content
+     */
+
+     .main {
+      padding: 20px;
+      position: absolute;
+      top: 0px;
+      bottom: 0px;
+      overflow-x: hidden;
+      overflow-y: auto;
+      .jumbotron {
+        background: inherit;
+        margin-top: 20px;
+    }
+}
+@media (min-width: 768px) {
+  .main {
+    padding-right: 40px;
+    padding-left: 40px;
+}
+}
+.main .page-header {
+  margin-top: 0;
+}
+
+
+    /*
+     * Placeholder dashboard ideas
+     */
+
+     .placeholders {
+        margin-bottom: 30px;
+        text-align: center;
+    }
+    .placeholders h4 {
+        margin-bottom: 0;
+    }
+    .placeholder {
+        margin-bottom: 20px;
+    }
+    .placeholder img {
+        display: inline-block;
+        border-radius: 50%;
+    }
+
+
+    .bg-fade {
+        font-size: 500px;
+        color: rgba(0,0,0,0.1);
+        position: absolute;
+        right: -100px;
+        top: 180px;
+        overflow: hidden;
+    }
+
+  .jumbotron {
+      background: @brand-primary;
+  }
+  .fr {
+    padding-left: 60px;
+}
+
+}
+.btn-white {
+  border-color: white;
+  border-radius: 0 !important;
+  border: 3px solid;
+  background: none;
+  &:hover, &:focus {
+    border-color: white;
+    color: #797979;
+    background: white;
+}
+}
+.snap-content, snap-content {
+    overflow-x: hidden;
+}
+snap-content {
+    background: @brand-primary;
+    a {
+        color: white;
+        &:hover,&:active,&:focus {
+            color: white;
+        }
+    }
+    .menutoggle {
+        .fa {
+            position: absolute;
+            left: 15px;
+            top: 25px;
+        }
+    }
+}
+snap-drawer {
+    background: darken(@brand-primary, 4%);
+    a {
+        color: white;
+        &:hover,&:active,&:focus {
+            color: white;
+        }
+    }
+    .sidebar-header {
+        margin-top: 40px;
+        .sidebar-img {
+            width: 140px;
+            border: 3px solid white;
+        }
+    }
+    ul.snap-ul {
+        list-style-type: none;
+        padding-left: 0px;
+        margin-top: 20px;
+        li.active {
+             background: @brand-primary;
+        }
+        li {
+            height: 40px;
+            padding: 11px;
+            padding-left: 28px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 1px;
+            &:hover {
+                background: @brand-primary;
+            }
+            a {
+                display: block;
+                height: 35px;
+                &:hover {
+                    text-decoration: none;
+
+                }
+            }
+        }
+    }
+}
+.bg-dark {
+    background:#34495e;
+}
+
+* {
+    a:hover {
+        cursor: pointer;
+    }
+}
