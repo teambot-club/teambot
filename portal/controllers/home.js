@@ -1,5 +1,5 @@
-app.controller('HomeController', ['$scope', '$http', '$location', '$state', '$mdToast', 'configuration', '$mdDialog', 'configService', 'loaderService',
-    function($scope, $http, $location, $state, $mdToast, configuration, $mdDialog, configService, loaderService) {
+app.controller('HomeController', ['$scope', '$http', '$location', '$state', 'configuration', '$mdDialog', 'configService', 'loaderService', 'notificationService',
+    function($scope, $http, $location, $state, configuration, $mdDialog, configService, loaderService, notificationService) {
         var botkitUri = configuration.botKitUrl;
         $scope.isConfigured = configuration.isConfigured;
 
@@ -14,7 +14,7 @@ app.controller('HomeController', ['$scope', '$http', '$location', '$state', '$md
                 loaderService.hideLoader();
                 window.location.href = botkitUri + '/login';
             }, function errorCallback(response) {
-                showNotification(response.data);
+                notificationService.showError(response.data);
                 loaderService.hideLoader();
                 console.log(JSON.stringify(response));
             });
@@ -41,19 +41,27 @@ app.controller('HomeController', ['$scope', '$http', '$location', '$state', '$md
             });
         }
 
+        var defaultSlackChannel = configuration.slack.defaultChannel || 'general';
         $scope.config = {
             teamName: configuration.team.teamName,
             teamUrl: configuration.team.teamUrl,
             clientId: configuration.slack.clientId,
-            clientSecret: configuration.slack.clientSecret
+            clientSecret: configuration.slack.clientSecret,
+            defaultSlackChannel: defaultSlackChannel
         }
 
-        function showNotification(message) {
-            $mdToast.show(
-                $mdToast.simple()
-                .textContent(message)
-                .position('left')
-                .hideDelay(3000));
+        $scope.updateDefaultSlackChannel = function (channelName) {
+            var slackConfig = configuration.slack;
+            slackConfig.defaultChannel = channelName;
+            
+            configService.updateSlackConfiguration(slackConfig)
+                .then(function (result) {
+                    if (result && result.success) {
+                        notificationService.showSuccess('Skill installed successfully');
+                    } else {
+                        notificationService.showError('Cannot update default slack channel');
+                    }
+                });
         }
     }
 ]);

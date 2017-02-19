@@ -104,6 +104,11 @@ var DataProvider = function() {
 
                 var collection = db.collection(collectionName);
 
+                if (document._id) {
+                    var ObjectId = require('mongodb').ObjectID;
+                    document._id = ObjectId(document._id);
+                }
+
                 collection.updateOne(selector, {
                     $set: document
                 }, {

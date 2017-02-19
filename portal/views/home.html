@@ -38,6 +38,11 @@
                 <p class="md-secondary">{{ config.clientSecret }}</p>
             </md-list-item>
             <md-list-item>
+                <p> Default Slack channel:</p>
+                <span class="bold" style="padding-right: 5px;">#</span>
+                <input ng-blur="updateDefaultSlackChannel(config.defaultSlackChannel)" layout-padding class="md-secondary" ng-model="config.defaultSlackChannel">
+            </md-list-item>
+            <md-list-item>
                 <md-button ng-click="resetSettings()" class="md-raised md-primary">Reset Configuration</md-button>
             </md-list-item>
         </div>
