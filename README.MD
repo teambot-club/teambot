@@ -1,4 +1,4 @@
-![TEAMBOT](portal/img/teambot-banner.png)
+![TEAMBOT](portal/img/teambot-banner.png) 
 
 [![Waffle.io](https://img.shields.io/badge/project-board-green.svg)](http://waffle.io/teambot-club/teambot)
 [![Code Climate](https://codeclimate.com/github/teambot-club/teambot/badges/gpa.svg)](https://codeclimate.com/github/teambot-club/teambot)
